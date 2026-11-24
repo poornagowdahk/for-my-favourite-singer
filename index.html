@@ -1,0 +1,2193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Now Performing 🎤</title>
+<meta name="description" content="A tiny private concert, just for you.">
+<meta name="theme-color" content="#140720">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<script>
+/* =====================================================================
+   ✏️  EDIT ME — everything personal lives here
+   ===================================================================== */
+const CONFIG = {
+  herName:   "Pruthvishree",        // her name
+  petName:   "cutiepie putaanii",   // what you cutely call her (shows on the curtain, under her name, and in a secret)
+  stageName: "",                    // optional: her singer / stage name. Leave "" to use herName
+  fromName:  "your muddin Poorna",  // how you sign off
+  tourName:  "The Forever Tour",    // printed on her concert ticket
+  nextShow:  "",                    // optional: her next performance, e.g. "2026-12-20T19:00" → shows a countdown
+  songLink:  "",                    // optional: link to her singing (YouTube / Instagram / Spotify) → shows a "listen" button
+  whatsapp:  "",                    // optional: your number with country code, no + (e.g. "919876543210")
+
+  // The album. Each track plays a little melody while these "lyrics" light up word by word.
+  // The last track always loops forever.
+  tracks: [
+    { title: "Your Voice (My Favorite Sound)", lyrics: [
+      "Out of every song in the whole world,",
+      "your voice is still my favorite sound.",
+      "Even your sleepy “hmm?” is a melody,",
+      "and your laugh is the best chorus ever. 🎶" ] },
+    { title: "3 A.M. Voice Notes", lyrics: [
+      "You hum when you think no one's listening.",
+      "Plot twist: I'm always listening. 👀",
+      "Every voice note you've ever sent me,",
+      "I replay like it's a hit single. 🔁" ] },
+    { title: "Stage Lights & Butterflies", lyrics: [
+      "When you walk up to that mic,",
+      "the whole room goes quiet.",
+      "And me? I forget how breathing works.",
+      "Every. Single. Time. 🦋" ] },
+    { title: "Off-Key (But Still Perfect)", lyrics: [
+      "Even when you crack a note in the shower,",
+      "I'd still buy the album.",
+      "Deluxe edition. Signed.",
+      "Framed on my wall. 😌" ] },
+    { title: "Front Row, Forever", lyrics: [
+      "Big stage or tiny room,",
+      "a thousand people or just me —",
+      "I'll be the one in the front row,",
+      "clapping way too loud. 👏" ] },
+    { title: "Forever (On Repeat)", lyrics: [
+      "If you're a song, I'm on repeat.",
+      "No skip button. No shuffle.",
+      "Just you, playing in my heart,",
+      "on loop, forever. 💖" ] }
+  ],
+
+  // The love song on notebook paper. Wrap a line in ~~like this~~ to scribble it out.
+  loveSong: [
+    { label: "Verse 1", lines: [
+      "The first time I heard you sing,",
+      "I forgot every word I knew.",
+      "~~I tried to play it cool~~",
+      "I did not play it cool." ] },
+    { label: "Chorus", lines: [
+      "You're my favorite song,",
+      "the one I'll never skip,",
+      "the high note and the harmony,",
+      "the tune stuck on my lips. 🎶" ] },
+    { label: "Verse 2", lines: [
+      "You sing in the car, you sing in the rain,",
+      "you sing when you think I can't hear —",
+      "and every version, every take,",
+      "is my favorite one this year." ] },
+    { label: "Bridge", lines: [
+      "And when the lights go down",
+      "and everybody's gone,",
+      "I'll still be standing there",
+      "yelling “ONE MORE SONG!” 📣" ] },
+    { label: "Outro", lines: [
+      "~~I rhymed skip with lips, I'm so sorry~~",
+      "Okay, I'm no songwriter.",
+      "But you're my favorite singer, Pruthvishree.",
+      "Forever and ever, my cutiepie putaanii. 💖" ] }
+  ],
+
+  // The award ceremony: every envelope she opens names her the winner
+  awards: [
+    { category: "Best Voice in My Life", note: "Unanimous decision. (I was the only judge.)" },
+    { category: "Most Beautiful Smile on Stage", note: "Also off stage. Also everywhere." },
+    { category: "Album of the Year: “Us”", note: "Certified forever-platinum 💿" },
+    { category: "Lifetime Achievement in Making Me Happy", note: "The acceptance speech can just be a hug 🤗" }
+  ],
+
+  // The secret track: unlocks after she wins all 3 gold records in the music arcade
+  secretTrack: [
+    "This one isn't on any album.",
+    "It's just for you, Pruthvishree.",
+    "For every song you sing, I'll be listening.",
+    "For every stage you stand on, I'll be cheering.",
+    "And on every quiet day, I'll be right there.",
+    "You're my favorite voice, my favorite person,",
+    "my cutiepie putaanii, forever. 💖"
+  ],
+
+  // The finale's "Now and always — …" lines
+  always: [
+    "on repeat 🔁",
+    "no skips, ever ⏭️",
+    "volume all the way up 🔊",
+    "my most played 🥇",
+    "stuck in my head (the good way) 🎶",
+    "my favorite sound in the world 💖"
+  ]
+};
+/* ===================================================================== */
+</script>
+
+<style>
+:root{
+  --night:#140720; --plum:#2a0c3f; --pink:#ff5fa2; --hot:#ff2e88; --gold:#ffd36e; --cyan:#7ae8ff;
+  --violet:#a98bff; --cream:#fff5ea; --muted:#cbb6dc; --ink:#2b1630;
+  --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.13);
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background:var(--night);color:var(--cream);font-family:"Fredoka",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body.locked{overflow:hidden;height:100vh;height:100svh}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* ---------- stage background ---------- */
+.stage-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(900px 560px at 50% -8%, rgba(169,139,255,.30), transparent 62%),
+    radial-gradient(700px 520px at 105% 95%, rgba(255,95,162,.16), transparent 60%),
+    radial-gradient(640px 480px at -5% 85%, rgba(122,232,255,.10), transparent 60%),
+    linear-gradient(180deg,#1c0a2c 0%,#140720 55%,#0d0416 100%)}
+.beam{position:absolute;top:-6vh;width:60vmax;height:125vh;margin-left:-30vmax;transform-origin:50% 0;
+  background:linear-gradient(180deg,var(--c) 0%,transparent 78%);
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%);
+  opacity:0;mix-blend-mode:screen;transition:opacity 2.5s;
+  animation:sway 9s ease-in-out infinite alternate}
+body.started .beam{opacity:.13}
+.beam.b1{--c:var(--pink);left:12%;animation-duration:8s}
+.beam.b2{--c:var(--cyan);left:50%;animation-duration:11s;animation-delay:-4s}
+.beam.b3{--c:var(--gold);left:88%;animation-duration:9.5s;animation-delay:-7s}
+@keyframes sway{from{transform:rotate(-24deg)}to{transform:rotate(24deg)}}
+.star{position:absolute;border-radius:50%;background:#fff;opacity:.15;animation:twinkle var(--d) ease-in-out infinite alternate;animation-delay:var(--dl)}
+@keyframes twinkle{to{opacity:.85;transform:scale(1.4)}}
+#floaters{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fnote{position:absolute;bottom:-40px;will-change:transform;line-height:1}
+#fx{position:fixed;inset:0;z-index:150;pointer-events:none;overflow:hidden}
+.particle{position:absolute;will-change:transform,opacity;line-height:1;pointer-events:none}
+
+/* ---------- curtains intro ---------- */
+.curtain{position:fixed;inset:0;z-index:100;display:grid;place-items:center;cursor:pointer;background:#0b0412;transition:background .8s .6s}
+.drape{position:absolute;top:0;bottom:0;width:50.5%;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0) 65%,rgba(0,0,0,.5)),
+    repeating-linear-gradient(90deg,#6e0a1f 0,#a8143a 3.2%,#d4264c 5.4%,#a8143a 7.6%,#6e0a1f 11%);
+  box-shadow:inset 0 0 70px rgba(0,0,0,.55);
+  transition:transform 1.8s cubic-bezier(.65,0,.25,1)}
+.drape.left{left:0;transform-origin:0 0}
+.drape.right{right:0;transform-origin:100% 0}
+.valance{position:absolute;top:0;left:0;right:0;height:58px;z-index:2;
+  background:
+    radial-gradient(circle at 50% 0,#9b1131 0 26px,transparent 27px) 0 30px/52px 30px repeat-x,
+    linear-gradient(#8a0f2b,#a3143a) 0 0/100% 32px no-repeat;
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.5));transition:transform 1.1s .35s ease-in}
+.valance::after{content:"";position:absolute;left:0;right:0;top:28px;height:4px;background:linear-gradient(90deg,#d9a441,#fff0b8,#d9a441)}
+.start-ticket{position:relative;z-index:3;border:none;background:none;padding:0;cursor:pointer;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));animation:pulse 1.8s ease-in-out infinite;transition:transform .5s,opacity .5s}
+.st-face{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 34px;border-radius:16px;color:#3b1630;
+  background:radial-gradient(circle at 80% 15%,rgba(255,255,255,.55),transparent 40%),linear-gradient(135deg,#ffe28f,#ffbd55);
+  -webkit-mask:radial-gradient(circle 13px at 0 50%,transparent 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 50%,transparent 97%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 13px at 0 50%,transparent 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% 50%,transparent 97%,#000) right/51% 100% no-repeat}
+.st-face::before{content:"";position:absolute;inset:9px 20px;border:2px dashed rgba(59,22,48,.3);border-radius:10px;pointer-events:none}
+.st-top{font-family:"Bebas Neue",sans-serif;letter-spacing:.28em;font-size:.95rem}
+.st-big{font-family:"Pacifico",cursive;font-size:1.75rem;line-height:1.25}
+.st-bot{font-size:.9rem}
+@keyframes pulse{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.05) rotate(2deg)}}
+.curtain.open{background:transparent;pointer-events:none;animation:fadeAway .6s 1.6s forwards}
+.curtain.open .drape{transform:scaleX(.1)}
+.curtain.open .valance{transform:translateY(-110%)}
+.curtain.open .start-ticket{transform:scale(.5) translateY(-60px);opacity:0;animation:none}
+@keyframes fadeAway{to{opacity:0}}
+
+/* ---------- sound toggle ---------- */
+.sound-toggle{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(20,7,32,.72);font-size:19px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s}
+body.started .sound-toggle{opacity:1;pointer-events:auto}
+
+/* ---------- layout ---------- */
+main{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 16px 30px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:76px 0 36px;gap:6px}
+.spot{position:absolute;z-index:-1;top:-40px;left:50%;width:560px;height:105%;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(ellipse 45% 55% at 50% 42%,rgba(255,236,190,.17),transparent 70%),linear-gradient(180deg,rgba(255,236,190,.16),transparent 80%);
+  clip-path:polygon(41% 0,59% 0,100% 100%,0 100%);opacity:0}
+body.started .spot{animation:spotOn 1.3s .4s forwards}
+@keyframes spotOn{0%{opacity:0}25%{opacity:1}35%{opacity:.15}50%{opacity:1}62%{opacity:.45}100%{opacity:1}}
+.hero > :not(.spot){opacity:0;transform:translateY(18px)}
+body.started .hero > :not(.spot){animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.8s + var(--i,0) * .15s)}
+@keyframes rise{to{opacity:1;transform:none}}
+.neon{display:inline-block;font-family:"Pacifico",cursive;font-size:clamp(1.35rem,6.4vw,2rem);color:#effdff;line-height:1.3;
+  padding:4px 20px 10px;border:3px solid rgba(235,252,255,.92);border-radius:18px;transform:rotate(-3deg);
+  text-shadow:0 0 4px #fff,0 0 10px var(--cyan),0 0 22px var(--cyan),0 0 40px #1fb6ff;
+  box-shadow:0 0 8px var(--cyan),inset 0 0 8px var(--cyan),0 0 26px rgba(31,182,255,.55),inset 0 0 22px rgba(31,182,255,.35);
+  animation:flicker 6s infinite}
+@keyframes flicker{0%,17%,21%,24%,52%,56%,100%{opacity:1}19%,23%,54%{opacity:.35}}
+.name-wrap{position:relative;max-width:100%;margin-top:14px;cursor:pointer}
+.star-name{font-family:"Pacifico",cursive;font-weight:400;font-size:clamp(2.7rem,14vw,4.6rem);line-height:1.2;margin:0;padding:0 .25em .1em;overflow-wrap:anywhere;
+  background:linear-gradient(100deg,#ffe7a3 0%,#ffd36e 22%,#fffbe6 38%,#ff9ec8 55%,#ffd36e 75%,#ffe7a3 100%);background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 18px rgba(255,211,110,.35));animation:shine 5s linear infinite}
+@keyframes shine{from{background-position:0% 0}to{background-position:200% 0}}
+.sparkles{position:absolute;inset:-6px -4px;pointer-events:none}
+.sparkles i{position:absolute;font-style:normal;color:var(--gold);text-shadow:0 0 8px rgba(255,211,110,.9);animation:sparkle 2.2s ease-in-out infinite;animation-delay:var(--dl)}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1) rotate(90deg)}}
+.aka{margin:-2px 0 2px;font-family:"Caveat",cursive;font-size:1.55rem;line-height:1.2;color:var(--pink);text-shadow:0 0 12px rgba(255,95,162,.45)}
+.tagline{margin:2px 0 0;font-family:"Bebas Neue",sans-serif;letter-spacing:.2em;font-size:1.05rem;color:var(--muted)}
+.tagline b{color:var(--pink);font-weight:400}
+.mic{width:150px;height:auto;margin-top:6px;overflow:visible}
+.mic-body{animation:bob 3.2s ease-in-out infinite;transform-origin:100px 200px}
+@keyframes bob{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-6px)}}
+.mic .w{transform-origin:100px 66px;animation:wave 1.8s ease-out infinite}
+.mic .w2{animation-delay:.45s}
+@keyframes wave{0%{opacity:0;transform:scale(.8)}35%{opacity:1}100%{opacity:0;transform:scale(1.15)}}
+.eq{display:flex;gap:4px;align-items:flex-end;justify-content:center;height:46px;margin-top:4px}
+.eq i{width:6px;height:20%;border-radius:3px;background:linear-gradient(to top,var(--pink),var(--gold));animation:eq var(--d) ease-in-out infinite alternate;animation-delay:var(--dl)}
+@keyframes eq{from{height:12%}to{height:var(--h)}}
+body.music-on .eq i{animation-duration:calc(var(--d) * .45)}
+.listen-btn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:10px 18px;border-radius:999px;color:var(--cream);text-decoration:none;font-weight:500;background:rgba(255,95,162,.18);border:1px solid rgba(255,95,162,.5)}
+.scroll-hint{margin-top:14px;color:var(--muted);text-decoration:none;font-size:.92rem}
+.scroll-hint span{display:inline-block;animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ---------- cards ---------- */
+.card{position:relative;margin:26px 0;padding:26px 18px;border-radius:26px;background:var(--card);border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);text-align:center}
+.eyebrow{margin:0;font-family:"Bebas Neue",sans-serif;letter-spacing:.24em;font-size:1rem;color:var(--pink)}
+h2{margin:2px 0 6px;font-weight:600;font-size:clamp(1.45rem,6.2vw,1.95rem);line-height:1.2}
+.sub{margin:0 0 14px;color:var(--muted);font-size:.97rem}
+.hint{margin:12px 0 0;color:var(--muted);font-size:.88rem}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.07);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:500;transition:background .2s,transform .1s}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-ghost:active{transform:scale(.96)}
+.btn-ghost:disabled{opacity:.5;cursor:default}
+
+/* ---------- album player ---------- */
+.deck{position:relative;margin:14px auto 4px;padding:20px 46px 20px 20px;width:max-content;border-radius:24px;background:linear-gradient(145deg,#3b1d50,#1d0c2a);box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12)}
+.deck::after{content:"";position:absolute;left:12px;bottom:12px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff7d6,#ffd36e 50%,#b8862c);box-shadow:0 0 8px rgba(255,211,110,.5)}
+.turntable{position:relative;width:min(220px,58vw);aspect-ratio:1}
+.vinyl{position:absolute;inset:0;border-radius:50%;
+  background:repeating-radial-gradient(circle at 50% 50%,#141418 0 1.6px,#202027 1.6px 3.2px);
+  box-shadow:0 10px 26px rgba(0,0,0,.55),0 0 0 5px #0a0a0c,0 0 46px rgba(255,95,162,.18);
+  animation:spin 1.8s linear infinite;animation-play-state:paused}
+.turntable.playing .vinyl{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.turntable::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 20deg,transparent 0 7%,rgba(255,255,255,.16) 11%,transparent 16% 50%,rgba(255,255,255,.11) 58%,transparent 64%)}
+.label{position:absolute;inset:31%;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:13% 8%;overflow:hidden;
+  background:linear-gradient(135deg,var(--pink),var(--violet));box-shadow:inset 0 0 0 3px rgba(255,255,255,.25);transition:filter .6s}
+.label::after{content:"";position:absolute;left:50%;top:50%;width:9%;height:9%;transform:translate(-50%,-50%);border-radius:50%;background:#140720}
+.lab-name{max-width:100%;font-family:"Pacifico",cursive;font-size:.72rem;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff}
+.lab-vol{font-family:"Bebas Neue",sans-serif;font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.9)}
+.tonearm{position:absolute;z-index:3;top:-4%;right:-8%;width:17%;height:68%;transform-origin:50% 11.25%;transform:rotate(-10deg);transition:transform .9s cubic-bezier(.4,1.5,.5,1);filter:drop-shadow(2px 4px 4px rgba(0,0,0,.5))}
+.turntable.playing .tonearm{transform:rotate(17deg)}
+.np{width:100%;margin-top:14px}
+.np-title{font-weight:600;font-size:1.18rem;line-height:1.3}
+.np-artist{color:var(--muted);font-size:.9rem}
+.progress-hit{padding:10px 0 4px;cursor:pointer}
+.progress{height:6px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
+.progress .bar{height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,var(--pink),var(--gold))}
+.times{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.controls{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:6px}
+.ctrl{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.08);cursor:pointer;transition:transform .12s,background .2s,color .2s}
+.ctrl:active{transform:scale(.9)}
+.ctrl svg{width:21px;height:21px;fill:currentColor}
+.ctrl.play{width:64px;height:64px;background:linear-gradient(135deg,var(--pink),var(--hot));box-shadow:0 8px 24px rgba(255,46,136,.45)}
+.ctrl.play svg{width:28px;height:28px}
+.ctrl.on{color:var(--pink);background:rgba(255,95,162,.16)}
+.ctrl.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+.lyrics{width:100%;min-height:176px;margin-top:14px;padding:12px 16px 14px;border-radius:18px;background:rgba(0,0,0,.28);border:1px solid var(--line);text-align:left}
+.lyrics-tag{font-family:"Bebas Neue",sans-serif;letter-spacing:.2em;font-size:.8rem;color:var(--muted)}
+.lyric{margin:4px 0;font-size:1.07rem;font-weight:500;line-height:1.4;color:rgba(255,245,234,.32);transition:color .4s,transform .4s;transform-origin:0 50%}
+.lyric span{transition:color .25s,text-shadow .25s}
+.lyric.active{color:rgba(255,245,234,.62);transform:scale(1.03)}
+.lyric.active span.lit{color:var(--gold);text-shadow:0 0 12px rgba(255,211,110,.5)}
+.lyric.done{color:rgba(255,245,234,.8)}
+.tracklist{list-style:none;padding:0;margin:16px 0 0;text-align:left}
+.track{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:none;border-radius:14px;background:none;cursor:pointer;text-align:left;transition:background .2s}
+.track:hover{background:rgba(255,255,255,.06)}
+.track.current{background:rgba(255,95,162,.15)}
+.track .num{display:flex;justify-content:center;width:22px;flex:none;color:var(--muted);font-variant-numeric:tabular-nums}
+.track.current .num{color:var(--pink)}
+.mini-eq{display:none;align-items:flex-end;gap:2px;height:14px}
+.mini-eq i{width:3px;height:30%;border-radius:2px;background:var(--pink);--h:100%;animation:eq .55s ease-in-out infinite alternate}
+.mini-eq i:nth-child(2){animation-delay:-.3s}.mini-eq i:nth-child(3){animation-delay:-.15s}
+.track.playing .n{display:none}.track.playing .mini-eq{display:flex}
+.t-title{flex:1;min-width:0;font-weight:500}
+.t-len{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+
+/* ---------- notebook love song ---------- */
+.paper{position:relative;margin:18px 2px 6px;padding:24px 14px 30px 46px;text-align:left;color:#3a2343;font-family:"Caveat",cursive;font-size:1.34rem;line-height:32px;border-radius:4px;
+  background:
+    linear-gradient(90deg,transparent 34px,rgba(240,90,120,.55) 34px,rgba(240,90,120,.55) 36px,transparent 36px),
+    repeating-linear-gradient(180deg,transparent 0 31px,rgba(110,150,210,.38) 31px 32px) 0 24px,
+    #fffaf0;
+  box-shadow:0 18px 40px rgba(0,0,0,.45);transform:rotate(-1.2deg)}
+.paper::before{content:"";position:absolute;top:-13px;left:50%;width:110px;height:26px;margin-left:-55px;background:rgba(255,236,170,.78);transform:rotate(2deg);box-shadow:0 2px 4px rgba(0,0,0,.15)}
+.ls-label,.ls-line,.ls-gap{display:block;min-height:32px;opacity:0;transform:translateX(-8px);transition:opacity .6s,transform .6s}
+.ls-label{color:#e0457b;font-weight:700;font-size:1.25rem}
+.ls-line s{text-decoration-color:#e0457b;text-decoration-thickness:2.5px;opacity:.75}
+.notebook.in .ls-label,.notebook.in .ls-line,.notebook.in .ls-gap{opacity:1;transform:none}
+.doodle{position:absolute;color:#e0457b;font-size:1.7rem;opacity:.7;line-height:1}
+.doodle.d1{right:14px;top:30px;transform:rotate(14deg)}
+.doodle.d2{right:22px;bottom:22px;transform:rotate(-10deg)}
+.doodle.d3{left:8px;top:50%;font-size:1.3rem}
+.draft{position:absolute;right:12px;top:4px;font-size:1rem;color:#8b7a95;line-height:1}
+
+/* ---------- fan club card ---------- */
+.fan-card{display:block;width:min(340px,100%);aspect-ratio:1.586;margin:14px auto 0;padding:0;border:none;background:none;perspective:1100px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.25,.45,1);
+  transform:rotateX(var(--rx,0deg)) rotateY(calc(var(--ry,0deg) + var(--flip,0deg)))}
+.fan-card.flipped{--flip:180deg}
+.fc-face{position:absolute;inset:0;border-radius:18px;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;text-align:left;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.fc-front{display:flex;flex-direction:column;justify-content:space-between;padding:14px 16px;color:#2b1630;background:linear-gradient(135deg,#ffd6ea 0%,#e4d6ff 48%,#cff2ff 100%)}
+.fc-front::before{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.9) 0 1px,transparent 2px) 0 0/22px 22px,
+    linear-gradient(115deg,transparent 20%,rgba(255,60,170,.7) 32%,rgba(255,220,80,.7) 41%,rgba(60,255,200,.7) 50%,rgba(70,150,255,.7) 59%,transparent 72%) 0 0/300% 300%;
+  animation:holo 5s ease-in-out infinite alternate}
+@keyframes holo{from{background-position:0 0,0% 0%}to{background-position:0 0,100% 100%}}
+.fc-front::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--hx,30%) var(--hy,20%),rgba(255,255,255,.55),transparent 45%);mix-blend-mode:soft-light}
+.fc-top,.fc-bot{position:relative;display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:"Bebas Neue",sans-serif;letter-spacing:.14em;font-size:.9rem}
+.fc-bot{font-family:"Fredoka",sans-serif;letter-spacing:0;font-size:.74rem;font-weight:500}
+.fc-mid{position:relative;display:flex;align-items:center;gap:14px}
+.fc-avatar{flex:none;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;font-size:28px;background:linear-gradient(135deg,var(--pink),var(--violet));box-shadow:0 0 0 3px #fff,0 4px 10px rgba(0,0,0,.2)}
+.fc-fields{display:grid;gap:3px;min-width:0}
+.fc-fields small{display:block;font-size:.58rem;text-transform:uppercase;letter-spacing:.14em;opacity:.65;line-height:1.1}
+.fc-fields b{display:block;font-size:.92rem;font-weight:600;line-height:1.2;overflow-wrap:anywhere}
+.chip{width:34px;height:26px;border-radius:5px;background:linear-gradient(135deg,#f7d77a,#c9952e);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);
+  background-image:linear-gradient(90deg,transparent 45%,rgba(0,0,0,.18) 45% 55%,transparent 55%),linear-gradient(0deg,transparent 45%,rgba(0,0,0,.18) 45% 55%,transparent 55%),linear-gradient(135deg,#f7d77a,#c9952e)}
+.fc-back{transform:rotateY(180deg);color:var(--cream);background:linear-gradient(150deg,#3b1d50,#1a0a26);display:flex;flex-direction:column}
+.fc-strip{height:32px;margin-top:14px;background:#0b0610;flex:none}
+.fc-perks{flex:1;padding:8px 16px 0;font-size:.74rem;line-height:1.45}
+.fc-perks small{display:block;font-family:"Bebas Neue",sans-serif;letter-spacing:.18em;font-size:.8rem;color:var(--gold)}
+.fc-perks ul{list-style:none;margin:2px 0 0;padding:0}
+.fc-sig{padding:0 16px 10px;font-family:"Caveat",cursive;font-size:1.25rem;color:var(--pink);text-align:right}
+
+/* ---------- piano ---------- */
+.piano{position:relative;height:172px;margin:16px -6px 0;padding-top:10px;touch-action:none;-webkit-user-select:none;user-select:none;border-radius:10px 10px 12px 12px;background:#1a0b25}
+.piano::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;border-radius:10px 10px 0 0;background:linear-gradient(#ff7ab3,#c2185b);z-index:3}
+.key{position:absolute;top:10px;bottom:0;padding:0;border:none;cursor:pointer;-webkit-touch-callout:none}
+.key.white{z-index:1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;border:1px solid #cfc2dc;border-top:none;border-radius:0 0 9px 9px;
+  background:linear-gradient(180deg,#f6effb 0%,#fff 60%,#efe6f6 100%);box-shadow:inset 0 -6px 0 #e2d5ee;transition:background .12s,box-shadow .12s}
+.key.white span{font-size:.78rem;font-weight:600;color:#9a87ad;pointer-events:none}
+.key.black{z-index:2;bottom:40%;border-radius:0 0 6px 6px;background:linear-gradient(180deg,#3a2648,#120818);box-shadow:inset 0 -5px 0 #000,0 3px 6px rgba(0,0,0,.45)}
+.key.white.down{background:linear-gradient(180deg,#fff 0%,var(--glow) 100%);box-shadow:inset 0 -2px 0 #e2d5ee,0 0 22px var(--glow)}
+.key.white.down span{color:#3b1630}
+.key.black.down{background:linear-gradient(180deg,#5a3a70,var(--glow));box-shadow:0 0 18px var(--glow)}
+.piano-actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 14px;margin-top:16px}
+.secrets{font-size:.88rem;color:var(--muted)}
+.kbd-hint{display:none;margin:10px 0 0;font-size:.8rem;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.kbd-hint{display:block}}
+
+/* ---------- ticket ---------- */
+.ticket{position:relative;display:flex;width:min(360px,100%);margin:16px auto 4px;text-align:left;filter:drop-shadow(0 14px 22px rgba(0,0,0,.45))}
+.t-main{position:relative;flex:1;min-width:0;padding:14px 12px 12px 16px;color:#3b1630;border-radius:14px 0 0 14px;
+  background:radial-gradient(circle at 85% 15%,rgba(255,255,255,.5),transparent 40%),linear-gradient(135deg,#ffe28f,#ffbe5c);
+  -webkit-mask:radial-gradient(circle 10px at 100% 0,transparent 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 100% 100%,transparent 97%,#000) bottom/100% 51% no-repeat;
+          mask:radial-gradient(circle 10px at 100% 0,transparent 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 100% 100%,transparent 97%,#000) bottom/100% 51% no-repeat}
+.t-tour{font-family:"Bebas Neue",sans-serif;font-size:1.55rem;letter-spacing:.04em;line-height:1}
+.t-star{margin:2px 0 10px;font-size:.82rem}
+.t-star span{font-family:"Pacifico",cursive;font-size:.95rem;color:#c2185b}
+.t-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}
+.t-grid small{display:block;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;opacity:.7;line-height:1.2}
+.t-grid b{font-size:.86rem;font-weight:600;line-height:1.25}
+.barcode{height:24px;margin-top:10px;opacity:.85;
+  background:repeating-linear-gradient(90deg,#3b1630 0 2px,transparent 2px 4px,#3b1630 4px 5px,transparent 5px 8px,#3b1630 8px 11px,transparent 11px 13px,#3b1630 13px 14px,transparent 14px 17px)}
+.t-stub{position:relative;flex:none;width:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0;border:none;border-radius:0 14px 14px 0;cursor:pointer;color:#fff;
+  background:linear-gradient(160deg,#ff8cc0,#ff3d8f);transform-origin:0 0;
+  -webkit-mask:radial-gradient(circle 10px at 0 0,transparent 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 0 100%,transparent 97%,#000) bottom/100% 51% no-repeat;
+          mask:radial-gradient(circle 10px at 0 0,transparent 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at 0 100%,transparent 97%,#000) bottom/100% 51% no-repeat}
+.t-stub::before{content:"";position:absolute;left:0;top:14px;bottom:14px;border-left:2px dashed rgba(59,22,48,.45)}
+.t-stub .vt{writing-mode:vertical-rl;transform:rotate(180deg);font-family:"Bebas Neue",sans-serif;font-size:1.45rem;letter-spacing:.14em;line-height:1}
+.t-stub small{font-size:.7rem;font-weight:500;opacity:.95}
+.ticket.torn .t-stub{pointer-events:none;animation:tear 1.2s cubic-bezier(.5,0,.75,0) forwards}
+@keyframes tear{0%{transform:none}18%{transform:rotate(7deg) translate(4px,-3px)}100%{transform:rotate(40deg) translate(70px,300px);opacity:0}}
+.stamp{position:absolute;right:10px;top:38%;padding:2px 10px;border:3px solid #1f7a3a;border-radius:8px;color:#1f7a3a;font-family:"Bebas Neue",sans-serif;font-size:1.25rem;letter-spacing:.08em;opacity:0;transform:rotate(-14deg) scale(2.2);pointer-events:none}
+.ticket.torn .stamp{animation:stamp .35s .55s forwards}
+@keyframes stamp{to{opacity:.9;transform:rotate(-14deg) scale(1)}}
+.ticket-msg{margin:14px 0 0;font-weight:500;animation:rise .6s both}
+.countdown{display:inline-block;margin-top:14px;padding:10px 16px;border-radius:16px;background:rgba(122,232,255,.1);border:1px solid rgba(122,232,255,.35);font-size:.95rem}
+.countdown b{color:var(--cyan);font-variant-numeric:tabular-nums}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;text-align:left}
+.stat{padding:14px 14px 12px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,95,162,.22),rgba(169,139,255,.1))}
+.stat:nth-child(2){background:linear-gradient(160deg,rgba(122,232,255,.2),rgba(169,139,255,.08))}
+.stat:nth-child(3){background:linear-gradient(160deg,rgba(255,211,110,.22),rgba(255,95,162,.08))}
+.stat:nth-child(4){background:linear-gradient(160deg,rgba(169,139,255,.26),rgba(122,232,255,.06))}
+.stat:nth-child(5){background:linear-gradient(160deg,rgba(255,95,162,.16),rgba(255,211,110,.1))}
+.stat:nth-child(6){background:linear-gradient(160deg,rgba(122,232,255,.16),rgba(255,95,162,.12))}
+.stat small{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);line-height:1.25}
+.stat b{display:block;margin-top:4px;font-size:1.22rem;font-weight:600;line-height:1.2;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.stat .note{display:block;margin-top:3px;font-size:.76rem;color:var(--muted)}
+.count.inf{font-size:1.6rem;color:var(--gold)}
+
+/* ---------- encore ---------- */
+.encore{overflow:hidden;padding-bottom:0}
+.meter{position:relative;height:24px;margin:6px 0 10px;border-radius:12px;background:rgba(255,255,255,.1);overflow:hidden}
+.meter .fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold))}
+.meter span{position:relative;font-size:.82rem;font-weight:600;line-height:24px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.encore-msg{min-height:26px;margin:0 0 12px;font-weight:500}
+.encore-word{display:inline-block;font-family:"Bebas Neue",sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--gold);text-shadow:0 0 14px rgba(255,211,110,.7);animation:pop .5s}
+.clap-btn{position:relative;z-index:2;width:88px;height:88px;border:none;border-radius:50%;font-size:40px;cursor:pointer;touch-action:manipulation;
+  background:radial-gradient(circle at 35% 30%,#fff2c6,#ffd36e 45%,#efa83a);
+  box-shadow:0 10px 26px rgba(255,190,80,.45),inset 0 -4px 0 rgba(0,0,0,.12);transition:transform .08s}
+.clap-btn:active{transform:scale(.9)}
+.clap-btn.pop{animation:pop .25s}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+.clap-hint{position:relative;z-index:2;margin:8px 0 0;font-size:.85rem;color:var(--muted)}
+.crowd{position:relative;height:118px;margin:4px -18px 0;--lvl:0}
+.crowd::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 110% at 50% 115%,rgba(255,95,162,calc(.15 + var(--lvl) * .5)),transparent 70%)}
+.fan{position:absolute;left:var(--x);width:46px;height:64px;transform:translateX(-50%) scale(var(--s));transform-origin:50% 100%}
+.fan::before{content:"";position:absolute;left:50%;top:4px;width:24px;height:27px;margin-left:-12px;border-radius:50%;background:var(--c)}
+.fan::after{content:"";position:absolute;left:50%;bottom:-12px;width:46px;height:44px;margin-left:-23px;border-radius:22px 22px 6px 6px;background:var(--c)}
+.arm{position:absolute;z-index:1;left:66%;bottom:24px;width:6px;height:44px;border-radius:3px;background:var(--c);transform-origin:50% 100%;animation:armwave 2.4s ease-in-out infinite alternate;animation-delay:var(--dl)}
+.arm.left{left:24%}
+.arm::after{content:"";position:absolute;top:-8px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#fff3c4;box-shadow:0 0 9px 3px rgba(255,225,140,.85);opacity:calc(.2 + var(--lvl) * .8)}
+@keyframes armwave{from{transform:rotate(-18deg)}to{transform:rotate(20deg)}}
+.crowd.l1 .arm{animation-duration:1.5s}
+.crowd.l2 .arm{animation-duration:.8s}
+.crowd.l3 .arm{animation-duration:.42s}
+.crowd.l2 .fan,.crowd.l3 .fan{animation:hop .45s ease-in-out infinite alternate;animation-delay:var(--hop)}
+@keyframes hop{to{transform:translateX(-50%) scale(var(--s)) translateY(-7px)}}
+.encore.ovation::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0,rgba(255,211,110,.35),transparent 60%);animation:flash .45s 6 alternate}
+@keyframes flash{from{opacity:0}to{opacity:1}}
+
+/* ---------- finale ---------- */
+.finale{text-align:center;padding:40px 0 10px}
+.heart-record{width:min(230px,62vw);height:auto;overflow:visible;animation:beat 1.3s ease-in-out infinite;filter:drop-shadow(0 16px 30px rgba(255,46,136,.35))}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.08)}30%{transform:scale(.98)}45%{transform:scale(1.05)}}
+.neon-pink{margin:18px 0 4px;font-family:"Pacifico",cursive;font-weight:400;font-size:clamp(1.8rem,8.5vw,2.7rem);line-height:1.3;color:#ffe9f3;
+  text-shadow:0 0 4px #fff,0 0 12px var(--pink),0 0 26px var(--hot),0 0 46px var(--hot)}
+.always{margin:6px 0 22px;font-size:1.1rem;color:var(--muted)}
+#always{display:inline-block;color:var(--gold);font-weight:600;transition:opacity .35s,transform .35s}
+#always.out{opacity:0;transform:translateY(8px)}
+.btn-primary{padding:15px 28px;border:none;border-radius:999px;cursor:pointer;font-weight:600;font-size:1.08rem;color:#fff;background:linear-gradient(135deg,var(--pink),var(--hot));box-shadow:0 10px 28px rgba(255,46,136,.45);transition:transform .12s}
+.btn-primary:active{transform:scale(.95)}
+.sign{margin:26px 0 0;font-family:"Caveat",cursive;font-size:1.6rem;color:var(--pink)}
+footer{position:relative;z-index:1;padding:20px 16px calc(28px + env(safe-area-inset-bottom));text-align:center;font-size:.82rem;color:var(--muted)}
+
+/* ---------- music arcade ---------- */
+body.noscroll{overflow:hidden}
+.tiny{margin:8px 0 0;font-size:.78rem;color:var(--muted);line-height:1.4}
+.game-title{font-family:"Pacifico",cursive;font-size:1.45rem;color:var(--gold);line-height:1.3;margin:2px 0 6px}
+.link-btn{margin-top:12px;padding:6px;border:none;background:none;color:var(--muted);font-size:.88rem;text-decoration:underline;cursor:pointer}
+.records{display:flex;justify-content:center;gap:12px;margin:10px 0 12px}
+.rec{display:flex;flex-direction:column;align-items:center;gap:6px;width:86px;font-size:.72rem;line-height:1.2;color:var(--muted);transition:color .4s}
+.disc{position:relative;width:54px;height:54px;border-radius:50%;opacity:.5;transition:opacity .4s,box-shadow .4s;
+  background:repeating-radial-gradient(circle,#2a2a31 0 1.5px,#3b3b44 1.5px 3px);box-shadow:inset 0 0 0 2px rgba(255,255,255,.08)}
+.disc::after{content:"?";position:absolute;inset:32%;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:600;color:#ccc;background:#55505f}
+.rec.won{color:var(--gold)}
+.rec.won .disc{opacity:1;animation:spin 5s linear infinite;box-shadow:0 0 20px rgba(255,211,110,.6);
+  background:repeating-radial-gradient(circle,rgba(0,0,0,.1) 0 1px,transparent 1px 3px),conic-gradient(#fff6c9,#e0a93a,#fff2b0,#c98a22,#fff6c9,#e0a93a,#fff6c9)}
+.rec.won .disc::after{content:"♥";color:#fff;background:var(--pink)}
+.secret-btn{display:block;margin:0 auto 18px;padding:10px 18px;border-radius:999px;border:1px dashed rgba(255,211,110,.55);background:rgba(255,211,110,.07);color:var(--muted);font-weight:500;font-size:.9rem;cursor:pointer}
+.secret-btn.unlocked{border-style:solid;color:#3b1630;font-weight:600;background:linear-gradient(135deg,#ffe7a3,#ffc04d);box-shadow:0 0 22px rgba(255,211,110,.5)}
+.secret-btn.pulse{animation:pulse 1.6s ease-in-out infinite}
+.game-tabs{display:flex;gap:4px;margin:0 0 14px;padding:5px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid var(--line)}
+.game-tab{flex:1;padding:9px 4px;border:none;border-radius:999px;background:none;color:var(--muted);font-size:.86rem;font-weight:500;cursor:pointer;line-height:1.2;transition:background .2s,color .2s}
+.game-tab.on{color:#fff;background:linear-gradient(135deg,var(--pink),var(--hot));box-shadow:0 4px 14px rgba(255,46,136,.4)}
+
+/* rhythm */
+.rg-wrap{position:relative;margin:0 -4px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#12061c}
+#rgCanvas{display:block;width:100%;height:390px;touch-action:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+.rg-overlay{position:absolute;inset:0;display:grid;place-items:center;padding:16px;background:rgba(14,5,22,.78)}
+.rg-panel{max-width:290px}
+.rg-panel p{margin:4px 0 14px}
+.rg-grade{font-family:"Bebas Neue",sans-serif;font-size:4.6rem;line-height:1;color:var(--gold);text-shadow:0 0 24px rgba(255,211,110,.6)}
+.rg-grade.g-A{color:var(--pink);text-shadow:0 0 24px rgba(255,95,162,.6)}
+.rg-grade.g-B{color:var(--cyan);text-shadow:0 0 24px rgba(122,232,255,.6)}
+.rg-grade.g-C,.rg-grade.g-D{color:var(--violet);text-shadow:0 0 24px rgba(169,139,255,.5)}
+.rg-msg{font-weight:500}
+.rg-stats{display:grid;grid-template-columns:auto auto;justify-content:center;gap:3px 14px;margin:0 0 16px;font-size:.86rem;text-align:left}
+.rg-stats span{color:var(--muted)}
+
+/* echo */
+.echo-hud{display:flex;justify-content:center;gap:18px;font-size:.88rem;color:var(--muted);margin-bottom:12px}
+.echo-hud b{color:var(--cream)}
+.echo-board{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:280px;margin:0 auto}
+.echo-pad{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;border:none;border-radius:26px;color:#fff;cursor:pointer;touch-action:manipulation;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.3),transparent 55%),linear-gradient(145deg,var(--c),var(--d));
+  filter:saturate(.75) brightness(.7);box-shadow:inset 0 -6px 0 rgba(0,0,0,.18);transition:filter .12s,transform .12s,box-shadow .12s}
+.echo-pad:nth-child(1){--c:#ff5fa2;--d:#9e2a66}
+.echo-pad:nth-child(2){--c:#ffd36e;--d:#b47b1c;color:#3b1630}
+.echo-pad:nth-child(3){--c:#7ae8ff;--d:#1f7f9e;color:#0f2b3a}
+.echo-pad:nth-child(4){--c:#a98bff;--d:#5a3bb0}
+.echo-pad.lit{filter:saturate(1.1) brightness(1.18);transform:scale(1.05);box-shadow:0 0 34px var(--c),inset 0 -6px 0 rgba(0,0,0,.12)}
+.echo-pad b{font-family:"Pacifico",cursive;font-weight:400;font-size:1.8rem;line-height:1.5}
+.echo-pad small{margin-top:2px;font-size:.78rem;font-weight:600;opacity:.85}
+.echo-board.wrong{animation:shake .4s}
+.echo-status{min-height:50px;margin:14px 0 10px;font-weight:500}
+
+/* pitch */
+.pg-btn{display:block;width:100%;max-width:300px;margin:12px auto 0}
+.pg-target{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:2px 0 8px}
+.pg-target b{font-family:"Pacifico",cursive;font-weight:400;font-size:3.2rem;line-height:1.25;color:var(--gold);text-shadow:0 0 20px rgba(255,211,110,.45)}
+.pg-target small{font-size:1.3rem;font-weight:600;color:var(--muted)}
+.tuner{position:relative;height:58px;margin:16px 0 8px;border-radius:14px;border:1px solid var(--line);overflow:hidden;
+  background:linear-gradient(90deg,rgba(255,95,162,.25),rgba(255,211,110,.12) 38%,rgba(125,255,176,.35) 50%,rgba(255,211,110,.12) 62%,rgba(255,95,162,.25))}
+.tuner::before{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:2px;margin-left:-1px;background:rgba(255,255,255,.55)}
+.t-flat,.t-sharp{position:absolute;bottom:4px;font-size:.68rem;color:var(--muted)}
+.t-flat{left:8px}.t-sharp{right:8px}
+.needle{position:absolute;top:8px;bottom:8px;left:50%;width:6px;margin-left:-3px;border-radius:3px;background:var(--cream);opacity:.2;transition:left .12s linear,background .2s,opacity .2s}
+.tuner.live .needle{opacity:1;box-shadow:0 0 10px #fff}
+.tuner.in .needle{background:#7dffb0;box-shadow:0 0 18px #7dffb0}
+.pg-detected{min-height:24px;font-size:.92rem;color:var(--cream)}
+.hold{height:12px;margin:10px 0 0;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden}
+.hold-fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width .1s linear}
+.pg-slider{display:block;width:100%;height:36px;margin:12px 0 10px;accent-color:var(--pink);cursor:pointer}
+.pg-msg{min-height:26px;margin:12px 0 0;font-weight:600;color:var(--gold)}
+
+/* ---------- awards ---------- */
+.awards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.award{position:relative;aspect-ratio:.8;padding:0;border:none;background:none;perspective:900px;cursor:pointer}
+.aw-inner{position:absolute;inset:0;display:block;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.3,.5,1)}
+.award.open .aw-inner{transform:rotateY(180deg)}
+.award.rolling .aw-inner{animation:jitter .1s linear infinite}
+@keyframes jitter{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+.aw-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 10px;border-radius:16px;overflow:hidden;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.aw-front{justify-content:flex-end;padding-bottom:14px;color:#3b1630;background:linear-gradient(160deg,#ffe7a3,#f0b549);box-shadow:0 12px 26px rgba(0,0,0,.4)}
+.aw-flap{position:absolute;left:0;right:0;top:0;height:40%;background:linear-gradient(180deg,#fbd77c,#e8a838);clip-path:polygon(0 0,100% 0,50% 100%)}
+.aw-seal{position:absolute;top:36%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;display:grid;place-items:center;font-size:15px;color:#fff;background:radial-gradient(circle at 35% 35%,#ff8cc0,#c2185b);box-shadow:0 3px 8px rgba(0,0,0,.3)}
+.aw-label{font-family:"Bebas Neue",sans-serif;font-size:.72rem;letter-spacing:.2em;opacity:.65}
+.aw-cat{font-size:.8rem;font-weight:600;line-height:1.22}
+.aw-tap{font-size:.68rem;opacity:.65}
+.aw-back{justify-content:center;transform:rotateY(180deg);color:var(--cream);border:1px solid rgba(255,211,110,.55);
+  background:radial-gradient(circle at 50% 30%,rgba(255,211,110,.3),transparent 60%),linear-gradient(160deg,#3b1d50,#1a0a26)}
+.aw-cat2{font-size:.68rem;line-height:1.25;color:var(--muted)}
+.aw-trophy{font-size:2rem;line-height:1.2}
+.award.open .aw-trophy{animation:pop .6s .6s}
+.aw-name{font-family:"Pacifico",cursive;font-size:1.05rem;line-height:1.3;color:var(--gold);overflow-wrap:anywhere}
+.aw-note{font-size:.72rem;line-height:1.3}
+
+/* ---------- secret track ---------- */
+.secret-ov{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:20px 16px;overflow-y:auto;
+  background:radial-gradient(circle at 50% 28%,rgba(255,211,110,.2),transparent 60%),#0d0416;animation:fadeIn .6s both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.so-inner{width:min(420px,100%);text-align:center}
+.gold-vinyl{position:relative;width:170px;aspect-ratio:1;margin:12px auto 6px;border-radius:50%;animation:spin 4s linear infinite;
+  background:repeating-radial-gradient(circle,rgba(0,0,0,.12) 0 1px,transparent 1px 3px),conic-gradient(#fff6c9,#e0a93a,#fff2b0,#c98a22,#fff6c9,#e0a93a,#fff6c9);
+  box-shadow:0 0 50px rgba(255,211,110,.45),0 0 0 4px rgba(255,255,255,.15)}
+.gv-label{position:absolute;inset:34%;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;color:#fff;background:linear-gradient(135deg,var(--pink),var(--violet))}
+.so-title{margin:12px 0 8px;font-family:"Pacifico",cursive;font-weight:400;font-size:1.45rem;line-height:1.3;color:var(--gold)}
+.so-lyrics{min-height:250px}
+.so-line{margin:7px 0;font-size:1.08rem;font-weight:500;opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s}
+.so-line.on{opacity:1;transform:none}
+.so-line.sig{font-family:"Caveat",cursive;font-size:1.6rem;color:var(--pink)}
+.so-actions{display:flex;justify-content:center;gap:10px;margin-top:10px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));z-index:200;width:max-content;max-width:calc(100% - 32px);padding:12px 18px;border-radius:16px;text-align:center;
+  background:rgba(24,9,38,.95);border:1px solid rgba(255,95,162,.4);box-shadow:0 12px 30px rgba(0,0,0,.45);opacity:0;transform:translate(-50%,30px);transition:opacity .35s,transform .35s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (min-width:560px){
+  .card{padding:30px 28px}
+  .crowd{margin:4px -28px 0}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;transition-delay:0s !important;scroll-behavior:auto !important}
+  .beam{display:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<div class="stage-bg" aria-hidden="true">
+  <div class="beam b1"></div><div class="beam b2"></div><div class="beam b3"></div>
+  <div id="stars"></div>
+</div>
+<div id="floaters" aria-hidden="true"></div>
+<div id="fx" aria-hidden="true"></div>
+
+<!-- ===== Curtains ===== -->
+<div class="curtain" id="curtain">
+  <div class="drape left"></div>
+  <div class="drape right"></div>
+  <div class="valance"></div>
+  <button class="start-ticket" id="startBtn" type="button">
+    <span class="st-face">
+      <span class="st-top">★ tonight only ★</span>
+      <span class="st-big">Tap to start<br>the show</span>
+      <span class="st-bot">a private concert for my <b data-pet></b> 🎤</span>
+    </span>
+  </button>
+</div>
+
+<button class="sound-toggle" id="soundToggle" type="button" aria-label="Mute sound">🔊</button>
+
+<main>
+  <!-- ===== Hero ===== -->
+  <header class="hero" id="top">
+    <div class="spot" aria-hidden="true"></div>
+    <div style="--i:0"><span class="neon">Now Performing</span></div>
+    <div class="name-wrap" id="nameWrap" style="--i:1">
+      <h1 class="star-name" data-stage></h1>
+      <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+    </div>
+    <p class="aka" id="aka" style="--i:1.5">aka my <span data-pet></span> 💖</p>
+    <p class="tagline" style="--i:2">live in my heart · <b>sold out</b> forever</p>
+    <div style="--i:3">
+      <svg class="mic" viewBox="0 0 200 215" aria-hidden="true">
+        <defs>
+          <linearGradient id="micMetal" x1="0" x2="1">
+            <stop offset="0" stop-color="#8d8aa6"/><stop offset=".35" stop-color="#f6f4ff"/><stop offset=".62" stop-color="#c9c5dc"/><stop offset="1" stop-color="#6f6b8a"/>
+          </linearGradient>
+          <pattern id="micMesh" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.5" fill="#4a4560"/></pattern>
+          <linearGradient id="micBody" x1="0" x2="1">
+            <stop offset="0" stop-color="#3b1d4f"/><stop offset=".45" stop-color="#8a45a0"/><stop offset="1" stop-color="#2a1238"/>
+          </linearGradient>
+          <radialGradient id="micGlow"><stop offset="0" stop-color="#ffd36e" stop-opacity=".5"/><stop offset="1" stop-color="#ffd36e" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="100" cy="70" r="82" fill="url(#micGlow)"/>
+        <g fill="none" stroke-linecap="round" stroke-width="5">
+          <path class="w" d="M50 46 Q37 68 50 90" stroke="#ff5fa2"/>
+          <path class="w w2" d="M31 34 Q12 68 31 102" stroke="#a98bff"/>
+          <path class="w" d="M150 46 Q163 68 150 90" stroke="#ff5fa2"/>
+          <path class="w w2" d="M169 34 Q188 68 169 102" stroke="#7ae8ff"/>
+        </g>
+        <g class="mic-body">
+          <rect x="68" y="20" width="64" height="84" rx="32" fill="url(#micMetal)"/>
+          <rect x="68" y="20" width="64" height="84" rx="32" fill="url(#micMesh)" opacity=".55"/>
+          <path d="M78 42 Q82 29 94 25" stroke="#fff" stroke-width="4" fill="none" opacity=".75" stroke-linecap="round"/>
+          <rect x="63" y="94" width="74" height="16" rx="8" fill="#ffd36e"/>
+          <path d="M76 110 H124 L114 194 Q100 204 86 194 Z" fill="url(#micBody)"/>
+          <path d="M100 148 c-6-8 -18-2 -12 8 l12 10 l12-10 c6-10 -6-16 -12-8z" fill="#ff5fa2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="eq" id="eq" style="--i:4" aria-hidden="true"></div>
+    <a class="listen-btn" id="listenBtn" style="--i:5" target="_blank" rel="noopener" hidden>🎧 listen to the real star</a>
+    <a class="scroll-hint" href="#album" style="--i:6">see tonight's setlist <span>↓</span></a>
+  </header>
+
+  <!-- ===== Album player ===== -->
+  <section class="card reveal" id="album">
+    <p class="eyebrow">the debut album</p>
+    <h2>Songs I'd write about you</h2>
+    <p class="sub">press play and watch the lyrics light up ✨</p>
+
+    <div class="deck">
+      <div class="turntable" id="turntable">
+        <div class="vinyl"><div class="label" id="vLabel"><span class="lab-name" data-stage></span><span class="lab-vol">♥ vol. 1 ♥</span></div></div>
+        <svg class="tonearm" viewBox="0 0 40 160" aria-hidden="true">
+          <defs><linearGradient id="armMetal" x1="0" x2="1"><stop offset="0" stop-color="#9a95b3"/><stop offset=".5" stop-color="#f4f2ff"/><stop offset="1" stop-color="#8a85a3"/></linearGradient></defs>
+          <circle cx="20" cy="18" r="15" fill="#2c2236" stroke="#8d86a3" stroke-width="2"/>
+          <circle cx="20" cy="18" r="7" fill="url(#armMetal)"/>
+          <path d="M20 18 L20 122 L14 134" stroke="url(#armMetal)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="5" y="130" width="16" height="24" rx="3" fill="#ff5fa2" transform="rotate(-12 13 142)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="np">
+      <div class="np-title" id="npTitle"></div>
+      <div class="np-artist">by your #1 fan</div>
+      <div class="progress-hit" id="progHit" role="slider" aria-label="Song progress" tabindex="0"><div class="progress"><div class="bar" id="npBar"></div></div></div>
+      <div class="times"><span id="npCur">0:00</span><span id="npDur">0:00</span></div>
+      <div class="controls">
+        <button class="ctrl" id="likeBtn" type="button" aria-label="Like this song"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.8 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></button>
+        <button class="ctrl" id="prevBtn" type="button" aria-label="Previous song"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2.5v14H6zM20 5.8v12.4a.8.8 0 0 1-1.2.7L9.6 12.7a.8.8 0 0 1 0-1.4l9.2-6.2a.8.8 0 0 1 1.2.7z"/></svg></button>
+        <button class="ctrl play" id="playBtn" type="button" aria-label="Play"></button>
+        <button class="ctrl" id="nextBtn" type="button" aria-label="Next song"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5H18v14h-2.5zM4 5.8v12.4a.8.8 0 0 0 1.2.7l9.2-6.2a.8.8 0 0 0 0-1.4L5.2 5.1A.8.8 0 0 0 4 5.8z"/></svg></button>
+        <button class="ctrl" id="repeatBtn" type="button" aria-label="Repeat this song"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4V7H7a3 3 0 0 0-3 3v1H2v-1a5 5 0 0 1 5-5h10V2zM7 22l-4-4 4-4v3h10a3 3 0 0 0 3-3v-1h2v1a5 5 0 0 1-5 5H7v3z"/></svg></button>
+      </div>
+      <div class="lyrics" id="lyrics" aria-live="polite"></div>
+    </div>
+    <ol class="tracklist" id="tracklist"></ol>
+  </section>
+
+  <!-- ===== Music arcade ===== -->
+  <section class="card reveal" id="arcade">
+    <p class="eyebrow">the music arcade</p>
+    <h2>Let's play 🎮</h2>
+    <p class="sub">win all 3 gold records to unlock a secret track</p>
+    <div class="records">
+      <div class="rec" data-rec="rhythm"><span class="disc"></span><span>Heartbeat<br>Hero</span></div>
+      <div class="rec" data-rec="echo"><span class="disc"></span><span>Echo<br>Me</span></div>
+      <div class="rec" data-rec="pitch"><span class="disc"></span><span>Hold That<br>Note</span></div>
+    </div>
+    <button class="secret-btn" id="secretBtn" type="button"></button>
+
+    <div class="game-tabs" role="tablist" aria-label="Games">
+      <button class="game-tab on" type="button" role="tab" aria-selected="true" data-game="rhythm">💖 Rhythm</button>
+      <button class="game-tab" type="button" role="tab" aria-selected="false" data-game="echo">🔁 Echo</button>
+      <button class="game-tab" type="button" role="tab" aria-selected="false" data-game="pitch">🎤 Pitch</button>
+    </div>
+
+    <div class="game" id="g-rhythm">
+      <div class="rg-wrap">
+        <canvas id="rgCanvas" aria-label="Rhythm game: tap a lane when its heart reaches the line"></canvas>
+        <div class="rg-overlay" id="rgOverlay"><div class="rg-panel" id="rgPanel"></div></div>
+      </div>
+    </div>
+
+    <div class="game" id="g-echo" hidden>
+      <div class="game-title">Echo Me 🔁</div>
+      <div class="echo-hud"><span>round <b id="echoRound">0</b></span><span>best <b id="echoBest">0</b></span><span>gold at <b>7</b></span></div>
+      <div class="echo-board" id="echoBoard">
+        <button class="echo-pad" type="button" aria-label="Sa (C)"><b>Sa</b><small>C</small></button>
+        <button class="echo-pad" type="button" aria-label="Re (D)"><b>Re</b><small>D</small></button>
+        <button class="echo-pad" type="button" aria-label="Ga (E)"><b>Ga</b><small>E</small></button>
+        <button class="echo-pad" type="button" aria-label="Pa (G)"><b>Pa</b><small>G</small></button>
+      </div>
+      <p class="echo-status" id="echoStatus" aria-live="polite">I sing a pattern, you sing it back. How far can you go?</p>
+      <button class="btn-primary" id="echoStart" type="button">▶ Start</button>
+    </div>
+
+    <div class="game" id="g-pitch" hidden>
+      <div class="game-title">Hold That Note 🎤</div>
+      <div id="pgIntro">
+        <p class="sub" style="margin:4px 0 0">You're the singer here, so let's test that voice.<br>Match 3 notes to win the gold record.</p>
+        <button class="btn-primary pg-btn" id="pgMic" type="button">🎤 Sing it (uses your mic)</button>
+        <button class="btn-ghost pg-btn" id="pgEar" type="button">🎚️ Tune it by ear (no mic)</button>
+        <p class="tiny" id="pgIntroMsg">nothing is recorded or sent anywhere. it all stays on your phone.</p>
+      </div>
+      <div id="pgPlay" hidden>
+        <div class="tiny" id="pgRound">Note 1 of 3</div>
+        <div class="pg-target"><b id="pgSargam">Sa</b><small id="pgNote">C</small></div>
+        <button class="btn-ghost" id="pgRef" type="button">🔊 hear the note</button>
+        <div id="pgMicUi">
+          <div class="tuner" id="pgTuner"><span class="t-flat">♭ low</span><span class="t-sharp">high ♯</span><span class="needle" id="pgNeedle"></span></div>
+          <div class="pg-detected" id="pgDetected">waiting for your voice… 🎤</div>
+          <div class="hold"><div class="hold-fill" id="pgHoldFill"></div></div>
+          <p class="tiny">sing it in any octave and hold it steady until the bar fills</p>
+        </div>
+        <div id="pgEarUi">
+          <p class="tiny">drag the slider until your tone matches the note</p>
+          <input class="pg-slider" id="pgSlider" type="range" min="-150" max="150" step="1" value="0" aria-label="Tune your tone">
+          <button class="btn-primary" id="pgLock" type="button">Lock it in 🎯</button>
+        </div>
+        <p class="pg-msg" id="pgMsg" aria-live="polite"></p>
+        <button class="link-btn" id="pgBack" type="button">← change mode</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Love song notebook ===== -->
+  <section class="card notebook reveal">
+    <p class="eyebrow">unreleased demo</p>
+    <h2>I wrote you a song ✍️</h2>
+    <p class="sub">(I am not a songwriter. please be gentle.)</p>
+    <div class="paper" id="songPaper">
+      <span class="draft">draft #37</span>
+      <span class="doodle d1">♪</span><span class="doodle d2">♥</span><span class="doodle d3">♫</span>
+    </div>
+  </section>
+
+  <!-- ===== Fan club ===== -->
+  <section class="card reveal">
+    <p class="eyebrow">membership</p>
+    <h2>Official Fan Club 💳</h2>
+    <p class="sub">only one member. very exclusive.</p>
+    <button class="fan-card" id="fanCard" type="button" aria-label="Flip the fan club card">
+      <span class="fc-inner" style="display:block">
+        <span class="fc-face fc-front">
+          <span class="fc-top"><span>★ Official Fan Club ★</span><span>No. 001</span></span>
+          <span class="fc-mid">
+            <span class="fc-avatar">🎤</span>
+            <span class="fc-fields">
+              <span><small>Club</small><b><span data-stage></span> Fan Club</b></span>
+              <span><small>Member</small><b data-from></b></span>
+              <span><small>Status</small><b>Obsessed (incurable)</b></span>
+            </span>
+          </span>
+          <span class="fc-bot"><span>member since: day one · VIP forever</span><span class="chip"></span></span>
+        </span>
+        <span class="fc-face fc-back">
+          <span class="fc-strip"></span>
+          <span class="fc-perks"><small>Lifetime perks</small>
+            <ul>
+              <li>🎟️ Front row at every show</li>
+              <li>🤗 Unlimited backstage hugs</li>
+              <li>🎧 First listen to every new song</li>
+              <li>💧 Official holder of water bottle &amp; snacks</li>
+              <li>📣 Loudest “WOOO!” in the crowd</li>
+            </ul>
+          </span>
+          <span class="fc-sig">— <span data-from></span></span>
+        </span>
+      </span>
+    </button>
+    <p class="hint">tap the card to flip it ↻</p>
+  </section>
+
+  <!-- ===== Piano ===== -->
+  <section class="card reveal">
+    <p class="eyebrow">jam session</p>
+    <h2>Play me something 🎹</h2>
+    <p class="sub">psst… notes have letters. try spelling a word 😏<br><span style="font-size:.88rem">(hint: B _ B E)</span></p>
+    <div class="piano" id="piano"></div>
+    <div class="piano-actions">
+      <button class="btn-ghost" id="ourSongBtn" type="button">▶ play “our song”</button>
+      <span class="secrets" id="secrets">secrets found: 0/3</span>
+    </div>
+    <p class="kbd-hint">on a keyboard? keys A W S E D F T G Y H U J K O L P ; play too</p>
+  </section>
+
+  <!-- ===== Ticket ===== -->
+  <section class="card reveal">
+    <p class="eyebrow">your ticket</p>
+    <h2>Admit one, forever 🎟️</h2>
+    <p class="sub">tear the stub to check in</p>
+    <div class="ticket" id="ticket">
+      <div class="t-main">
+        <div class="t-tour" data-tour></div>
+        <div class="t-star">starring <span data-stage></span></div>
+        <div class="t-grid">
+          <div><small>Venue</small><b>My Heart</b></div>
+          <div><small>Seat</small><b>Front Row, Center</b></div>
+          <div><small>Date</small><b>Every day</b></div>
+          <div><small>Price</small><b>Priceless</b></div>
+        </div>
+        <div class="barcode"></div>
+        <div class="stamp">Valid forever</div>
+      </div>
+      <button class="t-stub" id="stub" type="button" aria-label="Tear the ticket stub"><span class="vt">Admit one</span><small>tear ✂</small></button>
+    </div>
+    <p class="ticket-msg" id="ticketMsg" hidden>Checked in ✅ See you at every show. I'll be the loudest one there. 💖</p>
+    <div class="countdown" id="countdown" hidden></div>
+  </section>
+
+  <!-- ===== Stats ===== -->
+  <section class="card reveal" id="stats">
+    <p class="eyebrow">my year in music</p>
+    <h2>Listening stats 📊</h2>
+    <p class="sub">calculated by my heart, not an algorithm</p>
+    <div class="stats">
+      <div class="stat"><small>Top artist</small><b data-stage></b><span class="note">#1 for 365 days straight</span></div>
+      <div class="stat"><small>Minutes listened</small><b><span class="count" data-to="999999" data-inf="1">0</span></b><span class="note" id="infNote">and counting…</span></div>
+      <div class="stat"><small>Most replayed</small><b>your voice notes 🔁</b></div>
+      <div class="stat"><small>Times I bragged about you</small><b><span class="count" data-to="4812">0</span></b><span class="note">this month alone</span></div>
+      <div class="stat"><small>Songs skipped</small><b>0</b><span class="note">wouldn't dare</span></div>
+      <div class="stat"><small>Top genre</small><b>whatever you're humming</b></div>
+    </div>
+  </section>
+
+  <!-- ===== Awards ===== -->
+  <section class="card reveal" id="awards">
+    <p class="eyebrow">the heart music awards</p>
+    <h2>And the award goes to… 🏆</h2>
+    <p class="sub">tap an envelope to open it 🥁</p>
+    <div class="awards" id="awardGrid"></div>
+    <p class="hint" id="awardHint"></p>
+  </section>
+
+  <!-- ===== Encore ===== -->
+  <section class="card encore reveal" id="encore">
+    <p class="eyebrow">the crowd is chanting</p>
+    <h2>We want an ENCORE!</h2>
+    <p class="sub">clap fast to fill the applause meter</p>
+    <div class="meter" id="meter" role="progressbar" aria-label="Applause" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="applause"></div><span id="applausePct">0%</span></div>
+    <p class="encore-msg" id="encoreMsg" aria-live="polite">the crowd is… politely waiting 🤫</p>
+    <button class="clap-btn" id="clapBtn" type="button" aria-label="Clap">👏</button>
+    <p class="clap-hint" id="clapHint">tap tap tap!</p>
+    <div class="crowd" id="crowd" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== Finale ===== -->
+  <section class="finale reveal" id="finale">
+    <svg class="heart-record" viewBox="0 0 200 190" aria-hidden="true">
+      <defs>
+        <radialGradient id="grooves" cx="100" cy="86" r="4.5" gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+          <stop offset="0" stop-color="#18181d"/><stop offset=".5" stop-color="#2b2b33"/><stop offset="1" stop-color="#18181d"/>
+        </radialGradient>
+        <linearGradient id="hrLabel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5fa2"/><stop offset="1" stop-color="#a98bff"/></linearGradient>
+        <linearGradient id="hrSheen" x1="0" y1="0" x2="1" y2="1">
+          <stop offset=".25" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/>
+          <stop offset=".7" stop-color="#fff" stop-opacity=".12"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="M100 178 C40 130 6 98 6 60 C6 30 30 8 58 8 C78 8 92 20 100 34 C108 20 122 8 142 8 C170 8 194 30 194 60 C194 98 160 130 100 178Z" fill="url(#grooves)" stroke="#0c0c10" stroke-width="3"/>
+      <path d="M100 178 C40 130 6 98 6 60 C6 30 30 8 58 8 C78 8 92 20 100 34 C108 20 122 8 142 8 C170 8 194 30 194 60 C194 98 160 130 100 178Z" fill="url(#hrSheen)"/>
+      <circle cx="100" cy="86" r="29" fill="url(#hrLabel)"/>
+      <circle cx="100" cy="86" r="3.5" fill="#140720"/>
+      <text x="100" y="76" text-anchor="middle" font-family="Pacifico, cursive" font-size="8.5" fill="#fff">on repeat</text>
+      <text x="100" y="103" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="8" letter-spacing="1.2" fill="#fff">FOREVER</text>
+    </svg>
+    <h2 class="neon-pink">You're my favorite song.</h2>
+    <p class="always">Now and always — <span id="always"></span></p>
+    <button class="btn-primary" id="singBtn" type="button">Sing me something? 🎤</button>
+    <p class="sign">— <span data-from></span>, your #1 fan</p>
+  </section>
+</main>
+
+<footer>Written, produced &amp; obsessed over by <span data-from></span><br>℗ <span id="yr"></span> Forever Records 💿 · all rights reserved for you</footer>
+
+<div class="secret-ov" id="secretOv" role="dialog" aria-modal="true" aria-label="Secret track" hidden>
+  <div class="so-inner">
+    <p class="eyebrow">bonus track · unlocked 🔓</p>
+    <div class="gold-vinyl"><span class="gv-label">♥</span></div>
+    <h3 class="so-title" id="soTitle"></h3>
+    <div class="so-lyrics" id="soLyrics"></div>
+    <div class="so-actions">
+      <button class="btn-ghost" id="soReplay" type="button">↻ play again</button>
+      <button class="btn-ghost" id="soClose" type="button">close ✕</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const PALETTE = ['#ff5fa2', '#ffd36e', '#7ae8ff', '#a98bff', '#fff5ea', '#ff9ec8'];
+
+/* ---------- fill in names ---------- */
+const stage = (CONFIG.stageName || CONFIG.herName || 'my love').trim();
+const pet = (CONFIG.petName || '').trim();
+$$('[data-her]').forEach(e => e.textContent = CONFIG.herName);
+$$('[data-pet]').forEach(e => e.textContent = pet || CONFIG.herName);
+if (!pet) $('#aka').hidden = true;
+$$('[data-stage]').forEach(e => e.textContent = stage);
+// keep long names on one line: shrink the big hero name and the record label to fit
+if (stage.length > 8) {
+  $('.star-name').style.fontSize = `clamp(2.2rem, ${Math.max(8, 165 / stage.length).toFixed(1)}vw, 4.6rem)`;
+  $('.lab-name').style.fontSize = '.5rem';
+  $('.stat b').style.fontSize = '1.05rem';
+}
+$$('[data-from]').forEach(e => e.textContent = CONFIG.fromName);
+$$('[data-tour]').forEach(e => e.textContent = CONFIG.tourName);
+$('#yr').textContent = new Date().getFullYear();
+document.title = `Now Performing: ${stage} 🎤`;
+if (CONFIG.songLink) { const l = $('#listenBtn'); l.href = CONFIG.songLink; l.hidden = false; }
+
+/* ---------- toast ---------- */
+const toastEl = $('#toast'); let toastT = 0;
+function toast(msg, ms = 3200) {
+  toastEl.textContent = msg; toastEl.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), ms);
+}
+
+/* ---------- small helpers ---------- */
+const SEMI = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+function noteMidi(n) {
+  const m = /^([A-G])([#b]?)(\d)$/.exec(n);
+  if (!m) return 69;
+  return (+m[3] + 1) * 12 + SEMI[m[1]] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0);
+}
+const rgba = (hex, a) => { const v = parseInt(hex.slice(1), 16); return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${a})`; };
+const median = arr => { const s = arr.slice().sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+// Pitch detection (a light version of the YIN algorithm). Returns { f: Hz or -1, rms }.
+function detectPitch(buf, sr) {
+  const n = buf.length; let rms = 0;
+  for (let i = 0; i < n; i++) rms += buf[i] * buf[i];
+  rms = Math.sqrt(rms / n);
+  if (rms < .01) return { f: -1, rms };
+  const minLag = Math.floor(sr / 1100), maxLag = Math.min(Math.floor(sr / 75), Math.floor(n / 2));
+  const win = n - maxLag, d = new Float32Array(maxLag + 1), cm = new Float32Array(maxLag + 1);
+  for (let tau = 1; tau <= maxLag; tau++) {
+    let s = 0;
+    for (let j = 0; j < win; j++) { const x = buf[j] - buf[j + tau]; s += x * x; }
+    d[tau] = s;
+  }
+  let run = 0; cm[0] = 1;
+  for (let t = 1; t <= maxLag; t++) { run += d[t]; cm[t] = run ? d[t] * t / run : 1; }
+  let tau = -1;
+  for (let t = Math.max(2, minLag); t < maxLag; t++) {
+    if (cm[t] < .2) { while (t + 1 < maxLag && cm[t + 1] < cm[t]) t++; tau = t; break; }
+  }
+  if (tau < 0) return { f: -1, rms };
+  const a = cm[tau - 1], b = cm[tau], c = cm[tau + 1], den = a + c - 2 * b;
+  return { f: sr / (den ? tau + (a - c) / (2 * den) : tau), rms };
+}
+
+/* =================================================================
+   Sound: a tiny synth built on the Web Audio API (no audio files)
+   ================================================================= */
+const Sound = (() => {
+  let ctx = null, out = null, master = null, fxBus = null, nbuf = null, on = true;
+  function init() {
+    try {
+      if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return true; }
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      ctx = new AC();
+      const comp = ctx.createDynamicsCompressor(); comp.connect(ctx.destination);
+      out = ctx.createGain(); out.gain.value = on ? 1 : 0; out.connect(comp);
+      master = ctx.createGain(); master.gain.value = .6; master.connect(out);
+      fxBus = ctx.createGain(); fxBus.gain.value = .8; fxBus.connect(out);
+      const delay = ctx.createDelay(1); delay.delayTime.value = .27;
+      const fb = ctx.createGain(); fb.gain.value = .3;
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400;
+      const wet = ctx.createGain(); wet.gain.value = .22;
+      master.connect(delay); delay.connect(lp); lp.connect(fb); fb.connect(delay); lp.connect(wet); wet.connect(out);
+      return true;
+    } catch (e) { ctx = null; return false; }
+  }
+  const now = () => ctx ? ctx.currentTime : 0;
+  const freq = n => 440 * Math.pow(2, (noteMidi(n) - 69) / 12);
+  function env(g, t, vol, attack, dur) {
+    g.gain.setValueAtTime(.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + attack);
+    g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  }
+  function tone(n, when, dur, o = {}) {
+    if (!ctx) return;
+    const t = Math.max(when == null ? now() : when, now());
+    const f = typeof n === 'number' ? n : freq(n);
+    const g = ctx.createGain(); env(g, t, o.vol || .2, o.attack || .008, dur); g.connect(o.dest || master);
+    const osc = ctx.createOscillator(); osc.type = o.type || 'triangle'; osc.frequency.value = f; osc.connect(g);
+    osc.start(t); osc.stop(t + dur + .05);
+    if (o.bright !== false) {
+      const o2 = ctx.createOscillator(); o2.type = 'sine'; o2.frequency.value = f * 2;
+      const g2 = ctx.createGain(); g2.gain.value = .22; o2.connect(g2); g2.connect(g);
+      o2.start(t); o2.stop(t + dur + .05);
+    }
+  }
+  function pad(notes, when, dur, dest) {
+    if (!ctx) return;
+    const t = Math.max(when, now());
+    notes.forEach(n => {
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(.0001, t);
+      g.gain.linearRampToValueAtTime(.045, t + .25);
+      g.gain.setValueAtTime(.045, t + Math.max(.3, dur - .25));
+      g.gain.linearRampToValueAtTime(.0001, t + dur + .15);
+      g.connect(dest || master);
+      const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = freq(n); o.detune.value = rand(-5, 5);
+      o.connect(g); o.start(t); o.stop(t + dur + .2);
+    });
+  }
+  function noise() {
+    if (nbuf) return nbuf;
+    nbuf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 2), ctx.sampleRate);
+    const d = nbuf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    return nbuf;
+  }
+  function hit(when, o = {}) {
+    if (!ctx) return;
+    const t = Math.max(when == null ? now() : when, now());
+    const s = ctx.createBufferSource(); s.buffer = noise();
+    const f = ctx.createBiquadFilter(); f.type = o.type || 'bandpass'; f.frequency.value = o.freq || 1200; f.Q.value = o.q || .9;
+    const g = ctx.createGain(); env(g, t, o.vol || .4, .002, o.decay || .12);
+    s.connect(f); f.connect(g); g.connect(o.dest || fxBus);
+    s.start(t, Math.random() * .4); s.stop(t + (o.decay || .12) + .05);
+  }
+  function clap(when, vol = .55) {
+    if (!ctx) return;
+    const t = when == null ? now() : when;
+    hit(t, { vol: vol * .5, decay: .02, freq: 1300 });
+    hit(t + .011, { vol: vol * .5, decay: .02, freq: 1200 });
+    hit(t + .022, { vol, decay: .14, freq: rand(1100, 1500) });
+  }
+  function arp(notes, when, step = .08, vol = .18, len = .9) {
+    const t = when == null ? now() : when;
+    notes.forEach((n, i) => tone(n, t + i * step, len, { vol }));
+  }
+  function fanfare() { if (!ctx) return; const t = now() + .05; arp(['C4', 'E4', 'G4', 'C5', 'E5', 'G5'], t, .07, .16); pad(['C4', 'E4', 'G4', 'C5'], t + .42, 1.6); tone('C6', t + .45, 1.8, { vol: .08 }); }
+  function cheer(count = 55, withArp = true) {
+    if (!ctx) return; const t = now();
+    for (let i = 0; i < count; i++) clap(t + Math.random() * 2.6, rand(.12, .4));
+    if (withArp) arp(['C5', 'E5', 'G5', 'C6'], t + .05, .09, .17, 1.4);
+  }
+  function kick(when, dest) {
+    if (!ctx) return; const t = Math.max(when, now());
+    const o = ctx.createOscillator(); o.type = 'sine';
+    o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(45, t + .12);
+    const g = ctx.createGain(); env(g, t, .45, .003, .28);
+    o.connect(g); g.connect(dest || master); o.start(t); o.stop(t + .32);
+  }
+  function drumroll(dur = 1.6) {
+    if (!ctx) return; const t = now(); let x = 0;
+    while (x < dur) { const p = x / dur; hit(t + x, { freq: rand(800, 1100), q: .7, vol: .06 + p * .3, decay: .06 }); x += .05 - p * .02; }
+  }
+  function crash() {
+    if (!ctx) return; const t = now() + .02;
+    hit(t, { type: 'highpass', freq: 5000, q: .4, vol: .4, decay: 1.5 });
+    hit(t, { freq: 220, q: 1, vol: .5, decay: .25 });
+    tone('C3', t, .7, { type: 'sine', vol: .3, bright: false });
+    arp(['C5', 'E5', 'G5', 'C6'], t + .05, .07, .14, 1.3);
+  }
+  function buzz() { if (!ctx) return; arp(['E4', 'Eb4', 'D4'], now() + .01, .15, .14, .45); }
+  function rip() { if (!ctx) return; const t = now(); hit(t, { type: 'highpass', freq: 2500, q: .5, vol: .35, decay: .18 }); hit(t + .07, { type: 'highpass', freq: 3500, q: .5, vol: .25, decay: .15 }); arp(['E5', 'A5'], t + .3, .1, .14); }
+  function sparkle() { if (!ctx) return; arp(['G5', 'B5', 'D6', 'G6'], now() + .02, .06, .12); }
+  function tick(when, dest, vol) { hit(when, { type: 'highpass', freq: 7000, q: .7, vol, decay: .045, dest }); }
+  function bus() { if (!ctx) return null; const g = ctx.createGain(); g.connect(master); return g; }
+  function release(g) {
+    if (!g || !ctx) return;
+    try { g.gain.cancelScheduledValues(now()); g.gain.setTargetAtTime(0, now(), .04); } catch (e) {}
+    setTimeout(() => { try { g.disconnect(); } catch (e) {} }, 500);
+  }
+  function setEnabled(v) { on = v; if (out) out.gain.setTargetAtTime(v ? 1 : 0, now(), .05); }
+  return { init, tone, pad, clap, arp, fanfare, cheer, kick, drumroll, crash, buzz, rip, sparkle, tick, bus, release, setEnabled, now,
+    isOn: () => on, ready: () => !!ctx, raw: () => ({ ctx, master }) };
+})();
+
+/* ---------- particles ---------- */
+const fx = $('#fx');
+function burst(x, y, n = 10, kind = 'notes') {
+  if (reduce) n = Math.min(n, 4);
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement('span'); el.className = 'particle';
+    if (kind === 'confetti') {
+      el.style.width = rand(6, 10) + 'px'; el.style.height = rand(10, 16) + 'px';
+      el.style.background = pick(PALETTE); el.style.borderRadius = '2px';
+    } else {
+      el.textContent = Array.isArray(kind) ? pick(kind) : pick(['♪', '♫', '♬', '♩', '✨', '💖']);
+      el.style.fontSize = rand(16, 28) + 'px'; el.style.color = pick(PALETTE);
+      el.style.textShadow = '0 0 10px rgba(255,95,162,.6)';
+    }
+    el.style.left = x + 'px'; el.style.top = y + 'px';
+    fx.appendChild(el);
+    const ang = kind === 'confetti' ? rand(0, Math.PI * 2) : rand(-Math.PI * .95, -Math.PI * .05);
+    const dist = rand(50, kind === 'confetti' ? 170 : 120);
+    const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist + (kind === 'confetti' ? 70 : 0);
+    const a = el.animate([
+      { transform: 'translate(-50%,-50%) scale(.4)', opacity: 1 },
+      { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(1) rotate(${rand(-180, 180)}deg)`, opacity: 0 }
+    ], { duration: rand(800, 1400), easing: 'cubic-bezier(.2,.7,.3,1)' });
+    a.onfinish = () => el.remove();
+  }
+}
+function rain(n, chars) {
+  if (reduce) n = Math.min(n, 8);
+  const W = window.innerWidth, H = window.innerHeight;
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement('span'); el.className = 'particle';
+    el.textContent = pick(chars); el.style.fontSize = rand(18, 30) + 'px';
+    el.style.left = rand(0, W - 20) + 'px'; el.style.top = '-40px';
+    fx.appendChild(el);
+    const a = el.animate([
+      { transform: 'translate(0,0) rotate(0deg)' },
+      { transform: `translate(${rand(-60, 60)}px, ${H + 80}px) rotate(${rand(-220, 220)}deg)` }
+    ], { duration: rand(2400, 4200), delay: rand(0, 1400), easing: 'cubic-bezier(.3,.1,.6,1)', fill: 'backwards' });
+    a.onfinish = () => el.remove();
+  }
+}
+const centerOf = el => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+
+/* ---------- stars + floating notes ---------- */
+const stars = $('#stars');
+for (let i = 0; i < 46; i++) {
+  const s = document.createElement('span'); s.className = 'star';
+  const size = rand(1, 2.6).toFixed(1) + 'px';
+  s.style.cssText = `left:${rand(0, 100)}%;top:${rand(0, 100)}%;width:${size};height:${size};--d:${rand(1.6, 4).toFixed(2)}s;--dl:${(-rand(0, 4)).toFixed(2)}s`;
+  stars.appendChild(s);
+}
+const floaters = $('#floaters');
+function floatNote() {
+  if (document.hidden) return;
+  const el = document.createElement('span'); el.className = 'fnote';
+  el.textContent = pick(['♪', '♫', '♬', '♩']);
+  el.style.left = rand(2, 94) + '%'; el.style.fontSize = rand(14, 30) + 'px';
+  el.style.color = pick(PALETTE); el.style.opacity = rand(.16, .42).toFixed(2);
+  floaters.appendChild(el);
+  const H = window.innerHeight + 80, sway = rand(-40, 40);
+  const a = el.animate([
+    { transform: 'translate(0,0) rotate(0deg)' },
+    { transform: `translate(${sway}px, -${H / 2}px) rotate(${rand(-20, 20)}deg)`, offset: .5 },
+    { transform: `translate(${-sway}px, -${H}px) rotate(0deg)` }
+  ], { duration: rand(9000, 15000), easing: 'linear' });
+  a.onfinish = () => el.remove();
+}
+if (!reduce) setInterval(floatNote, 1300);
+
+/* ---------- hero eq + sparkles ---------- */
+const eq = $('#eq');
+for (let i = 0; i < 22; i++) {
+  const b = document.createElement('i');
+  b.style.cssText = `--h:${rand(35, 100).toFixed(0)}%;--d:${rand(.5, 1.1).toFixed(2)}s;--dl:${(-rand(0, 1)).toFixed(2)}s`;
+  eq.appendChild(b);
+}
+const sp = $('#sparkles');
+[[4, 12], [92, 8], [12, 78], [86, 72], [48, -6], [70, 92]].forEach(([x, y], i) => {
+  const s = document.createElement('i'); s.textContent = '✦';
+  s.style.cssText = `left:${x}%;top:${y}%;font-size:${rand(12, 20).toFixed(0)}px;--dl:${(i * .37).toFixed(2)}s`;
+  sp.appendChild(s);
+});
+$('#nameWrap').addEventListener('click', e => {
+  Sound.init(); Sound.sparkle();
+  burst(e.clientX, e.clientY, 10, ['✨', '⭐', '🌟', '💖']);
+});
+
+/* ---------- curtains ---------- */
+try { history.scrollRestoration = 'manual'; } catch (e) {}
+window.scrollTo(0, 0);
+const curtain = $('#curtain');
+let started = false;
+function startShow() {
+  if (started) return; started = true;
+  Sound.init(); Sound.fanfare();
+  curtain.classList.add('open');
+  document.body.classList.add('started');
+  setTimeout(() => document.body.classList.remove('locked'), 600);
+  setTimeout(() => curtain.remove(), 2400);
+  setTimeout(() => burst(window.innerWidth / 2, window.innerHeight * .42, 16), 800);
+}
+curtain.addEventListener('click', startShow);
+$('#startBtn').focus({ preventScroll: true });
+
+/* ---------- sound toggle ---------- */
+const soundBtn = $('#soundToggle');
+soundBtn.addEventListener('click', () => {
+  Sound.init();
+  const v = !Sound.isOn(); Sound.setEnabled(v);
+  soundBtn.textContent = v ? '🔊' : '🔇';
+  soundBtn.setAttribute('aria-label', v ? 'Mute sound' : 'Turn sound on');
+  toast(v ? 'Sound on 🎶' : 'Sound off. The show goes on, silently 🤫', 2200);
+});
+
+/* =================================================================
+   The album player
+   ================================================================= */
+const MUSIC = [ // original little melodies: [note, beats]; 4 bars of 4/4, played twice
+  { bpm: 92, chords: ['C', 'G', 'Am', 'F'], melody: [['E4', 1], ['G4', 1], ['C5', 1.5], ['B4', .5], ['D5', 1], ['B4', 1], ['G4', 2], ['A4', 1], ['C5', 1], ['E5', 1.5], ['D5', .5], ['C5', 1], ['A4', 1], ['F4', 1], ['G4', 1]] },
+  { bpm: 80, chords: ['Am', 'F', 'C', 'G'], melody: [['A4', .5], ['C5', .5], ['E5', 1], ['D5', .5], ['C5', .5], ['A4', 1], ['F4', 1], ['A4', 1], ['C5', 2], ['G4', .5], ['E4', .5], ['G4', 1], ['C5', 1], ['B4', 1], ['D5', 2], ['B4', 1], ['G4', 1]] },
+  { bpm: 108, chords: ['F', 'G', 'Em', 'Am'], melody: [['C5', .5], ['C5', .5], ['A4', .5], ['C5', .5], ['F5', 1], ['E5', 1], ['D5', .5], ['D5', .5], ['B4', .5], ['D5', .5], ['G5', 2], ['E5', 1], ['D5', .5], ['B4', .5], ['G4', 1], ['B4', 1], ['C5', 1], ['B4', .5], ['A4', .5], ['A4', 2]] },
+  { bpm: 120, chords: ['C', 'Am', 'F', 'G'], melody: [['G4', .5], ['A4', .5], ['G4', .5], ['E4', .5], ['C5', 1], ['G4', 1], ['A4', .5], ['B4', .5], ['C5', .5], ['E5', .5], ['D5', 1], ['C5', 1], ['A4', .5], ['C5', .5], ['F5', 1], ['E5', .5], ['D5', .5], ['C5', 1], ['D5', .5], ['Eb5', .5], ['D5', 1], ['B4', 1], ['G4', 1]] },
+  { bpm: 100, chords: ['C', 'F', 'Am', 'G'], melody: [['C5', 1], ['C5', .5], ['D5', .5], ['E5', 1], ['G5', 1], ['F5', 1.5], ['E5', .5], ['C5', 1], ['A4', 1], ['A4', .5], ['C5', .5], ['E5', 1], ['D5', 1], ['C5', 1], ['B4', 1], ['D5', 1], ['G5', 2]] },
+  { bpm: 84, chords: ['F', 'C', 'G', 'C'], melody: [['A4', 1], ['C5', 1], ['F5', 1], ['E5', 1], ['E5', 1], ['D5', .5], ['C5', .5], ['G4', 2], ['B4', 1], ['D5', 1], ['G5', 1], ['F5', 1], ['E5', 1], ['D5', 1], ['C5', 2]] }
+];
+const CHORDS = { C: ['C4', 'E4', 'G4'], G: ['B3', 'D4', 'G4'], Am: ['A3', 'C4', 'E4'], F: ['A3', 'C4', 'F4'], Em: ['B3', 'E4', 'G4'], Dm: ['A3', 'D4', 'F4'] };
+const BASS = { C: 'C3', G: 'G2', Am: 'A2', F: 'F2', Em: 'E3', Dm: 'D3' };
+const REPS = 2;
+const tracks = CONFIG.tracks;
+const N = tracks.length;
+const isLoop = i => i === N - 1;
+const musicFor = i => isLoop(i) ? MUSIC[5] : MUSIC[i % 5];
+const dur = i => REPS * 16 * 60 / musicFor(i).bpm;
+const fmt = s => { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+const ICON = {
+  play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></svg>'
+};
+
+function schedule(i, offset) { return scheduleMusic(musicFor(i), offset, REPS); }
+function scheduleMusic(m, offset, reps) {
+  const b = Sound.bus(); if (!b) return null;
+  const spb = 60 / m.bpm;
+  const t0 = Sound.now() + .06 - offset;
+  for (let r = 0; r < reps; r++) {
+    const base = r * 16;
+    m.chords.forEach((c, bar) => {
+      const s = (base + bar * 4) * spb; if (s < offset - .01) return;
+      Sound.pad(CHORDS[c], t0 + s, 4 * spb, b);
+      Sound.tone(BASS[c], t0 + s, 2.2 * spb, { type: 'sine', vol: .16, bright: false, dest: b });
+      Sound.tone(BASS[c], t0 + s + 2 * spb, 1.8 * spb, { type: 'sine', vol: .11, bright: false, dest: b });
+    });
+    let beat = 0;
+    m.melody.forEach(([n, len]) => {
+      const s = (base + beat) * spb; beat += len; if (s < offset - .01) return;
+      Sound.tone(n, t0 + s, Math.min(2.4, Math.max(.45, len * spb * 1.7)), { vol: .19, dest: b });
+    });
+    if (m.bpm >= 100) for (let k = 0; k < 32; k++) {
+      const s = (base + k * .5) * spb; if (s < offset) continue;
+      Sound.tick(t0 + s, b, k % 2 ? .025 : .045);
+    }
+  }
+  return b;
+}
+
+const P = { i: 0, playing: false, t0: 0, el: 0, bus: null, raf: 0, repeat: false, liked: new Set(), key: '' };
+const turntable = $('#turntable'), playBtn = $('#playBtn'), bar = $('#npBar'), cur = $('#npCur'), durEl = $('#npDur');
+const lyricsBox = $('#lyrics'), titleEl = $('#npTitle'), likeBtn = $('#likeBtn'), repeatBtn = $('#repeatBtn');
+let lyricEls = [];
+const trackBtns = [];
+tracks.forEach((t, i) => {
+  const li = document.createElement('li');
+  li.innerHTML = '<button class="track" type="button"><span class="num"><span class="n"></span><span class="mini-eq"><i></i><i></i><i></i></span></span><span class="t-title"></span><span class="t-len"></span></button>';
+  li.querySelector('.n').textContent = i + 1;
+  li.querySelector('.t-title').textContent = t.title;
+  li.querySelector('.t-len').textContent = isLoop(i) ? '∞' : fmt(dur(i));
+  const btn = li.querySelector('button');
+  btn.addEventListener('click', () => { if (P.i === i) togglePlay(); else load(i, true); });
+  trackBtns.push(btn);
+  $('#tracklist').appendChild(li);
+});
+
+function renderLyrics() {
+  lyricsBox.innerHTML = '<div class="lyrics-tag">lyrics</div>';
+  lyricEls = (tracks[P.i].lyrics || []).map(line => {
+    const p = document.createElement('p'); p.className = 'lyric';
+    line.split(' ').forEach(w => { const s = document.createElement('span'); s.textContent = w + ' '; p.appendChild(s); });
+    lyricsBox.appendChild(p); return p;
+  });
+}
+function paint() {
+  titleEl.textContent = tracks[P.i].title;
+  durEl.textContent = isLoop(P.i) ? '∞' : fmt(dur(P.i));
+  turntable.classList.toggle('playing', P.playing);
+  playBtn.innerHTML = P.playing ? ICON.pause : ICON.play;
+  playBtn.setAttribute('aria-label', P.playing ? 'Pause' : 'Play');
+  document.body.classList.toggle('music-on', P.playing);
+  trackBtns.forEach((b, k) => { b.classList.toggle('current', k === P.i); b.classList.toggle('playing', k === P.i && P.playing); });
+  likeBtn.classList.toggle('on', P.liked.has(P.i));
+  $('#vLabel').style.filter = `hue-rotate(${P.i * 48}deg)`;
+}
+function progress(el) {
+  const d = dur(P.i);
+  bar.style.width = Math.min(100, el / d * 100) + '%';
+  cur.textContent = fmt(el);
+  if (!lyricEls.length) return;
+  const pos = el / d * lyricEls.length;
+  const li = Math.min(lyricEls.length - 1, Math.floor(pos));
+  const words = lyricEls[li].children;
+  const live = P.playing || el > 0;
+  const lit = live ? Math.ceil(Math.min(1, (pos - li) * 1.35) * words.length) : 0;
+  const key = li + ':' + lit + ':' + live;
+  if (key === P.key) return; P.key = key;
+  lyricEls.forEach((p, j) => {
+    p.classList.toggle('done', live && j < li);
+    p.classList.toggle('active', live && j === li);
+    [...p.children].forEach((w, k) => w.classList.toggle('lit', j === li ? k < lit : (live && j < li)));
+  });
+}
+function play() {
+  Sound.init(); stopGames();
+  cancelAnimationFrame(P.raf);
+  Sound.release(P.bus);
+  P.bus = schedule(P.i, P.el);
+  P.t0 = performance.now() - P.el * 1000;
+  P.playing = true; P.key = '';
+  paint(); frame();
+}
+function pause() {
+  if (!P.playing) return;
+  P.el = (performance.now() - P.t0) / 1000;
+  P.playing = false; cancelAnimationFrame(P.raf);
+  Sound.release(P.bus); P.bus = null; paint();
+}
+function togglePlay() { P.playing ? pause() : play(); }
+function load(i, auto) {
+  cancelAnimationFrame(P.raf); Sound.release(P.bus); P.bus = null; P.playing = false;
+  P.i = (i + N) % N; P.el = 0; P.key = '';
+  renderLyrics(); paint(); progress(0);
+  if (auto) play();
+}
+function frame() {
+  if (!P.playing) return;
+  const d = dur(P.i), el = (performance.now() - P.t0) / 1000;
+  if (el >= d) {
+    if (isLoop(P.i) || P.repeat) { P.el = 0; play(); }
+    else load(P.i + 1, true);
+    return;
+  }
+  progress(el);
+  P.raf = requestAnimationFrame(frame);
+}
+playBtn.addEventListener('click', togglePlay);
+$('#nextBtn').addEventListener('click', () => load(P.i + 1, P.playing));
+$('#prevBtn').addEventListener('click', () => {
+  const el = P.playing ? (performance.now() - P.t0) / 1000 : P.el;
+  if (el > 3) { P.el = 0; P.key = ''; if (P.playing) play(); else progress(0); }
+  else load(P.i - 1, P.playing);
+});
+const progHit = $('#progHit');
+function seekTo(x) {
+  P.el = Math.min(.999, Math.max(0, x)) * dur(P.i); P.key = '';
+  if (P.playing) play(); else progress(P.el);
+}
+progHit.addEventListener('click', e => { const r = progHit.getBoundingClientRect(); seekTo((e.clientX - r.left) / r.width); });
+progHit.addEventListener('keydown', e => {
+  const el = P.playing ? (performance.now() - P.t0) / 1000 : P.el, d = dur(P.i);
+  if (e.key === 'ArrowRight') { e.preventDefault(); seekTo((el + 2) / d); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); seekTo((el - 2) / d); }
+});
+likeBtn.addEventListener('click', () => {
+  const [x, y] = centerOf(likeBtn);
+  if (P.liked.has(P.i)) {
+    likeBtn.classList.remove('shake'); void likeBtn.offsetWidth; likeBtn.classList.add('shake');
+    toast('Error 💔: un-liking this song is not allowed.');
+  } else {
+    P.liked.add(P.i); paint(); burst(x, y, 8, ['💖', '💗', '💕']);
+    toast('Added to Liked Songs 💖 (it was already there, obviously)');
+  }
+});
+repeatBtn.addEventListener('click', () => {
+  P.repeat = !P.repeat; repeatBtn.classList.toggle('on', P.repeat);
+  toast(P.repeat ? 'Repeat one: ON 🔂 just like you on my mind' : "Repeat: off (you're still on repeat in my head)");
+});
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) return;
+  pause(); stopGames();
+  if (!secretOv.hidden) closeSecret();
+});
+load(0, false);
+
+/* =================================================================
+   Love song notebook
+   ================================================================= */
+const paper = $('#songPaper');
+CONFIG.loveSong.forEach((st, si) => {
+  const lab = document.createElement('span'); lab.className = 'ls-label'; lab.textContent = `[${st.label}]`; paper.appendChild(lab);
+  st.lines.forEach(l => {
+    const span = document.createElement('span'); span.className = 'ls-line';
+    const m = /^~~(.*)~~$/.exec(l.trim());
+    if (m) { const s = document.createElement('s'); s.textContent = m[1]; span.appendChild(s); } else span.textContent = l;
+    paper.appendChild(span);
+  });
+  if (si < CONFIG.loveSong.length - 1) { const g = document.createElement('span'); g.className = 'ls-gap'; paper.appendChild(g); }
+});
+$$('.ls-label, .ls-line, .ls-gap', paper).forEach((el, k) => el.style.transitionDelay = (.3 + k * .13).toFixed(2) + 's');
+
+/* =================================================================
+   Fan club card
+   ================================================================= */
+const card = $('#fanCard');
+card.addEventListener('click', () => {
+  card.classList.toggle('flipped');
+  Sound.init(); Sound.tone(card.classList.contains('flipped') ? 'E5' : 'C5', null, .5, { vol: .12 });
+});
+card.addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse') return;
+  const r = card.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+  card.style.setProperty('--hx', (x * 100).toFixed(1) + '%');
+  card.style.setProperty('--hy', (y * 100).toFixed(1) + '%');
+  card.style.setProperty('--rx', ((.5 - y) * 14).toFixed(1) + 'deg');
+  card.style.setProperty('--ry', ((x - .5) * 18).toFixed(1) + 'deg');
+});
+card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+
+/* =================================================================
+   Piano
+   ================================================================= */
+const KEYS = ['C4', 'C#4', 'D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4', 'C5', 'C#5', 'D5', 'D#5', 'E5'];
+const KB = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k', 'o', 'l', 'p', ';'];
+const KEY_COLORS = ['#ff5fa2', '#ff7ab3', '#ff9b6b', '#ffc46b', '#ffd36e', '#b8f07a', '#7ae8c8', '#7ae8ff', '#7ab8ff', '#a98bff', '#c58bff', '#ff8bd8', '#ff5fa2', '#ff7ab3', '#ffd36e', '#7ae8ff', '#a98bff'];
+const piano = $('#piano');
+const whiteCount = KEYS.filter(k => !k.includes('#')).length;
+const W = 100 / whiteCount;
+const keyEls = {};
+let wi = 0;
+KEYS.forEach((n, idx) => {
+  const black = n.includes('#');
+  const el = document.createElement('button'); el.type = 'button';
+  el.className = 'key ' + (black ? 'black' : 'white'); el.dataset.note = n;
+  el.setAttribute('aria-label', n.replace('#', ' sharp '));
+  el.tabIndex = -1;
+  el.style.setProperty('--glow', KEY_COLORS[idx]);
+  if (black) { el.style.left = `calc(${wi * W}% - ${W * .32}%)`; el.style.width = (W * .64) + '%'; }
+  else { el.style.left = (wi * W) + '%'; el.style.width = W + '%'; el.innerHTML = `<span>${n[0]}</span>`; wi++; }
+  piano.appendChild(el); keyEls[n] = el;
+});
+const SECRETS = [
+  { word: 'BABE', msg: `🔓 B·A·B·E: secret unlocked. Yes, that's you, my ${pet || 'love'}. Always has been 😌` },
+  { word: 'CAFE', msg: "☕ C·A·F·E: date unlocked. Coffee's on me this week." },
+  { word: 'FACE', msg: '🥹 F·A·C·E: your face is my favorite view, btw.' }
+];
+const found = new Set();
+let seq = '';
+function pressKey(el, record = true) {
+  if (!el) return;
+  Sound.init();
+  Sound.tone(el.dataset.note, null, 1.5, { vol: .26 });
+  el.classList.add('down');
+  const r = el.getBoundingClientRect();
+  burst(r.left + r.width / 2, r.top + 10, 1, ['♪', '♫', '♬']);
+  if (!record) return;
+  const n = el.dataset.note;
+  if (n.includes('#')) { seq = ''; return; }
+  seq = (seq + n[0]).slice(-8);
+  for (const s of SECRETS) {
+    if (seq.endsWith(s.word)) {
+      seq = '';
+      const first = !found.has(s.word); found.add(s.word);
+      $('#secrets').textContent = `secrets found: ${found.size}/${SECRETS.length}`;
+      setTimeout(() => {
+        Sound.sparkle(); toast(s.msg, 4200);
+        const [x, y] = centerOf(piano); burst(x, y - 40, 22, 'confetti');
+        if (first && found.size === SECRETS.length) setTimeout(() => toast('🎓 All secrets found! You are officially a musical genius 🎹', 4200), 4400);
+      }, 250);
+    }
+  }
+}
+function releaseKey(el) { if (el) el.classList.remove('down'); }
+const active = new Map();
+piano.addEventListener('pointerdown', e => {
+  const el = e.target.closest('.key'); if (!el) return;
+  e.preventDefault();
+  try { piano.setPointerCapture(e.pointerId); } catch (err) {}
+  active.set(e.pointerId, el); pressKey(el);
+});
+piano.addEventListener('pointermove', e => {
+  if (!active.has(e.pointerId)) return;
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  const key = el && el.closest ? el.closest('.key') : null;
+  const prev = active.get(e.pointerId);
+  if (key && key !== prev) { releaseKey(prev); active.set(e.pointerId, key); pressKey(key); }
+});
+const endPtr = e => { if (!active.has(e.pointerId)) return; releaseKey(active.get(e.pointerId)); active.delete(e.pointerId); };
+piano.addEventListener('pointerup', endPtr);
+piano.addEventListener('pointercancel', endPtr);
+piano.addEventListener('lostpointercapture', endPtr);
+const kbDown = new Set();
+document.addEventListener('keydown', e => {
+  if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+  const idx = KB.indexOf(e.key.toLowerCase()); if (idx < 0 || !started || RG.running()) return;
+  const r = piano.getBoundingClientRect();
+  if (r.bottom < 0 || r.top > window.innerHeight) return; // only when the piano is on screen
+  kbDown.add(idx); pressKey(keyEls[KEYS[idx]]);
+});
+document.addEventListener('keyup', e => {
+  const idx = KB.indexOf(e.key.toLowerCase()); if (idx < 0 || !kbDown.has(idx)) return;
+  kbDown.delete(idx); releaseKey(keyEls[KEYS[idx]]);
+});
+const OUR_SONG = [['E4', 1], ['G4', 1], ['C5', 1.5], ['B4', .5], ['A4', 1], ['G4', 1], ['E4', 2], ['F4', 1], ['A4', 1], ['D5', 1.5], ['C5', .5], ['B4', 1], ['G4', 1], ['C5', 2]];
+const ourBtn = $('#ourSongBtn');
+ourBtn.addEventListener('click', () => {
+  Sound.init(); ourBtn.disabled = true;
+  const spb = 60 / 100; let beat = 0;
+  OUR_SONG.forEach(([n, len]) => {
+    const at = beat * spb * 1000; beat += len;
+    setTimeout(() => { const el = keyEls[n]; pressKey(el, false); setTimeout(() => releaseKey(el), Math.max(160, len * spb * 800)); }, at);
+  });
+  setTimeout(() => { ourBtn.disabled = false; toast('That one is ours 🥹 Now you play it back to me.'); }, beat * spb * 1000 + 400);
+});
+
+/* =================================================================
+   Ticket + countdown
+   ================================================================= */
+const ticket = $('#ticket');
+$('#stub').addEventListener('click', () => {
+  if (ticket.classList.contains('torn')) return;
+  Sound.init(); Sound.rip();
+  const [x, y] = centerOf($('#stub'));
+  ticket.classList.add('torn'); burst(x, y, 20, 'confetti');
+  setTimeout(() => { $('#ticketMsg').hidden = false; }, 700);
+});
+if (CONFIG.nextShow) {
+  const target = new Date(CONFIG.nextShow);
+  if (!isNaN(target)) {
+    const cd = $('#countdown'); cd.hidden = false;
+    const tickCd = () => {
+      const ms = target - Date.now();
+      if (ms <= 0 && ms > -864e5) { cd.textContent = "🎤 It's SHOWTIME! Go shine. I'm cheering the loudest 💖"; return; }
+      if (ms <= 0) { cd.textContent = "🎤 Last show: you absolutely crushed it. I'm still clapping 👏"; return; }
+      const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+      cd.innerHTML = '🎤 Your next show is in <b></b>. Front row: reserved for me.';
+      cd.querySelector('b').textContent = `${d}d ${h}h ${m}m`;
+      setTimeout(tickCd, 30000);
+    };
+    tickCd();
+  }
+}
+
+/* =================================================================
+   Stats count-up
+   ================================================================= */
+function countUp(el) {
+  const to = +el.dataset.to, inf = el.dataset.inf === '1';
+  const done = () => { if (inf) { el.textContent = '∞'; el.classList.add('inf'); $('#infNote').textContent = '(the counter gave up)'; } };
+  if (reduce) { el.textContent = to.toLocaleString(); setTimeout(done, 400); return; }
+  const t0 = performance.now(), D = 1900;
+  const step = t => {
+    const p = Math.min(1, (t - t0) / D);
+    el.textContent = Math.floor(to * (1 - Math.pow(1 - p, 3))).toLocaleString();
+    if (p < 1) requestAnimationFrame(step); else setTimeout(done, 700);
+  };
+  requestAnimationFrame(step);
+}
+$('#stats').addEventListener('revealed', () => $$('#stats .count').forEach(countUp));
+
+/* =================================================================
+   Encore game
+   ================================================================= */
+const crowd = $('#crowd'), fill = $('#applause'), pct = $('#applausePct'), meter = $('#meter');
+const encoreMsg = $('#encoreMsg'), clapBtn = $('#clapBtn'), clapHint = $('#clapHint'), encoreSec = $('#encore');
+[{ n: 8, y: 22, s: .72, c: '#2a1339' }, { n: 7, y: 0, s: 1, c: '#0c0414' }].forEach((row, ri) => {
+  for (let k = 0; k < row.n; k++) {
+    const f = document.createElement('div'); f.className = 'fan';
+    const x = (k + .5) / row.n * 100 + rand(-3, 3) + (ri ? 0 : -2);
+    f.style.cssText = `--x:${x.toFixed(1)}%;--s:${row.s};--c:${row.c};bottom:${row.y}px;--hop:${(-rand(0, .5)).toFixed(2)}s`;
+    if (Math.random() < .7) {
+      const a = document.createElement('span'); a.className = 'arm' + (Math.random() < .4 ? ' left' : '');
+      a.style.setProperty('--dl', (-rand(0, 2.4)).toFixed(2) + 's'); f.appendChild(a);
+    }
+    crowd.appendChild(f);
+  }
+});
+let lvl = 0, encoreDone = false, lastT = 0, rafE = 0, lockUntil = 0;
+function setLevel() {
+  fill.style.width = lvl + '%'; pct.textContent = Math.round(lvl) + '%';
+  meter.setAttribute('aria-valuenow', Math.round(lvl));
+  crowd.style.setProperty('--lvl', (lvl / 100).toFixed(2));
+  crowd.className = 'crowd ' + (lvl > 75 ? 'l3' : lvl > 45 ? 'l2' : lvl > 12 ? 'l1' : '');
+  if (encoreDone) return;
+  encoreMsg.textContent = lvl < 1 ? 'the crowd is… politely waiting 🤫'
+    : lvl < 30 ? 'a few claps… keep going! 👀'
+    : lvl < 60 ? 'people are standing up!! 🙌'
+    : lvl < 85 ? 'THE CROWD IS GOING WILD 🔥'
+    : 'ALMOST THERE!!! 😱';
+}
+function tickE(t) {
+  const dt = Math.min(.1, (t - lastT) / 1000); lastT = t;
+  if (!encoreDone) lvl = Math.max(0, lvl - dt * 9);
+  setLevel();
+  rafE = (lvl > 0 && !encoreDone) ? requestAnimationFrame(tickE) : 0;
+}
+function encore() {
+  encoreDone = true; lvl = 100; setLevel();
+  lockUntil = performance.now() + 4000; // keep celebrating; fast taps throw roses instead of resetting
+  encoreMsg.innerHTML = '<span class="encore-word">ENCORE!</span><br>a standing ovation from your #1 fan 🌹';
+  Sound.cheer(); rain(30, ['🌹', '💐', '🌸', '💖', '✨']);
+  const [x, y] = centerOf(clapBtn); burst(x, y, 30, 'confetti');
+  encoreSec.classList.remove('ovation'); void encoreSec.offsetWidth; encoreSec.classList.add('ovation');
+  clapBtn.textContent = '🔁'; clapBtn.setAttribute('aria-label', 'Do it again');
+  clapHint.textContent = 'one more time?';
+}
+clapBtn.addEventListener('click', () => {
+  Sound.init();
+  if (encoreDone) {
+    if (performance.now() < lockUntil) {
+      Sound.clap(); const [x, y] = centerOf(clapBtn); burst(x, y - 30, 3, ['🌹', '💖', '✨']);
+      return;
+    }
+    encoreDone = false; lvl = 0; setLevel();
+    clapBtn.textContent = '👏'; clapBtn.setAttribute('aria-label', 'Clap'); clapHint.textContent = 'tap tap tap!';
+    encoreSec.classList.remove('ovation');
+    return;
+  }
+  lvl = Math.min(100, lvl + 7.5);
+  Sound.clap();
+  clapBtn.classList.remove('pop'); void clapBtn.offsetWidth; clapBtn.classList.add('pop');
+  const [x, y] = centerOf(clapBtn); burst(x, y - 30, 2, ['👏', '✨']);
+  if (lvl >= 100) { cancelAnimationFrame(rafE); rafE = 0; encore(); return; }
+  setLevel();
+  if (!rafE) { lastT = performance.now(); rafE = requestAnimationFrame(tickE); }
+});
+
+/* =================================================================
+   Finale
+   ================================================================= */
+const alwaysEl = $('#always'); let ai = 0;
+alwaysEl.textContent = CONFIG.always[0];
+setInterval(() => {
+  alwaysEl.classList.add('out');
+  setTimeout(() => { ai = (ai + 1) % CONFIG.always.length; alwaysEl.textContent = CONFIG.always[ai]; alwaysEl.classList.remove('out'); }, 350);
+}, 2600);
+$('#singBtn').addEventListener('click', e => {
+  Sound.init(); Sound.arp(['C5', 'E5', 'G5', 'C6'], null, .09, .16);
+  const [x, y] = centerOf(e.currentTarget); burst(x, y, 14);
+  const num = String(CONFIG.whatsapp || '').replace(/\D/g, '');
+  if (num) window.open(`https://wa.me/${num}?text=${encodeURIComponent('Okay okay, I will sing for you 🎤💖')}`, '_blank', 'noopener');
+  else toast("🎤 Request sent: one private concert, audience of one. I'll bring the applause.", 4000);
+});
+
+/* =================================================================
+   Music arcade: gold records
+   ================================================================= */
+const GOLD_KEY = 'pp-gold-v1';
+const GOLD_NAMES = { rhythm: 'Heartbeat Hero', echo: 'Echo Me', pitch: 'Hold That Note' };
+const gold = new Set((() => {
+  try { const v = JSON.parse(store.get(GOLD_KEY) || '[]'); return Array.isArray(v) ? v.filter(k => k in GOLD_NAMES) : []; }
+  catch (e) { return []; }
+})());
+const secretBtn = $('#secretBtn');
+function paintRecords() {
+  $$('.rec').forEach(r => r.classList.toggle('won', gold.has(r.dataset.rec)));
+  const open = gold.size >= 3;
+  secretBtn.classList.toggle('unlocked', open);
+  secretBtn.textContent = open ? '🔓 Play the secret track' : `🔒 Secret track · ${gold.size}/3 gold records`;
+}
+function award(id) {
+  if (gold.has(id)) return;
+  gold.add(id); store.set(GOLD_KEY, JSON.stringify([...gold])); paintRecords();
+  Sound.sparkle();
+  const [x, y] = centerOf($(`.rec[data-rec="${id}"]`)); burst(x, y, 26, 'confetti');
+  toast(`🏆 Gold record earned: ${GOLD_NAMES[id]} (${gold.size}/3)`, 3800);
+  if (gold.size === 3) setTimeout(() => { toast('🔓 All 3 gold records! The secret track is unlocked 💿', 4500); secretBtn.classList.add('pulse'); }, 4000);
+}
+paintRecords();
+function backing(chords, bpm, at, b) {
+  const spb = 60 / bpm;
+  chords.forEach((c, bar) => {
+    const s = at + bar * 4 * spb;
+    Sound.pad(CHORDS[c], s, 4 * spb, b);
+    Sound.tone(BASS[c], s, 2.2 * spb, { type: 'sine', vol: .16, bright: false, dest: b });
+    Sound.tone(BASS[c], s + 2 * spb, 1.8 * spb, { type: 'sine', vol: .11, bright: false, dest: b });
+    Sound.kick(s, b); Sound.kick(s + 2 * spb, b);
+    for (let k = 0; k < 8; k++) Sound.tick(s + k * .5 * spb, b, k % 2 ? .022 : .04);
+  });
+}
+
+/* ---------- Game 1: Heartbeat Hero (rhythm) ---------- */
+const RG = (() => {
+  const cv = $('#rgCanvas'), cx = cv.getContext('2d'), ov = $('#rgOverlay'), panel = $('#rgPanel');
+  const COLORS = ['#ff5fa2', '#ffd36e', '#7ae8ff', '#a98bff'];
+  const KEYS4 = ['d', 'f', 'j', 'k'];
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  const BPM = 96, SPB = 60 / BPM, COUNT_IN = 4, LEAD = 1.7;
+  const WIN = { perfect: .075, great: .14, ok: .21 };
+  const PTS = { perfect: 100, great: 70, ok: 40 };
+  const LABEL = { perfect: ['Perfect!', '#ffd36e'], great: ['Great', '#7ae8ff'], ok: ['Ok', '#cbb6dc'] };
+  const CH = ['C', 'G', 'Am', 'F', 'C', 'G', 'F', 'G', 'Am', 'F', 'G', 'C'];
+  const MEL = [ // an original 12-bar tune; each note becomes a heart to tap
+    ['E4', 1], ['G4', 1], ['C5', 1], ['G4', 1], ['B4', 1], ['D5', 1], ['B4', .5], ['A4', .5], ['G4', 1],
+    ['A4', 1], ['C5', 1], ['E5', 1], ['C5', 1], ['F5', 1], ['E5', .5], ['D5', .5], ['C5', 2],
+    ['G4', .5], ['G4', .5], ['C5', 1], ['E5', 1], ['D5', 1], ['D5', .5], ['C5', .5], ['B4', 1], ['G4', 2],
+    ['A4', 1], ['C5', 1], ['F5', 1], ['E5', 1], ['D5', 1], ['B4', 1], ['G4', 1], ['B4', 1],
+    ['C5', 1], ['E5', 1], ['A5', 1.5], ['G5', .5], ['F5', 1], ['A5', 1], ['F5', .5], ['E5', .5], ['C5', 1],
+    ['D5', .5], ['E5', .5], ['G5', 1], ['B4', 1], ['D5', 1], ['C5', 1], ['E5', 1], ['C5', 2]
+  ];
+  const laneOf = n => { const m = noteMidi(n); return m <= 69 ? 0 : m <= 72 ? 1 : m <= 76 ? 2 : 3; };
+  let W = 300, H = 390, notes = [], st = null;
+  function size() {
+    const r = cv.getBoundingClientRect(); if (!r.width) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function build() {
+    notes = []; let b = COUNT_IN;
+    MEL.forEach(([n, len]) => { notes.push({ t: b * SPB, n, len, lane: laneOf(n), hit: false, miss: false }); b += len; });
+    return b;
+  }
+  function heart(x, y, r, color, alpha) {
+    cx.save(); cx.globalAlpha = alpha; cx.translate(x, y);
+    cx.beginPath(); cx.moveTo(0, r * .9);
+    cx.bezierCurveTo(-r * 1.25, r * .05, -r * .85, -r * 1.05, 0, -r * .38);
+    cx.bezierCurveTo(r * .85, -r * 1.05, r * 1.25, r * .05, 0, r * .9);
+    cx.closePath(); cx.shadowColor = color; cx.shadowBlur = 14; cx.fillStyle = color; cx.fill();
+    cx.shadowBlur = 0; cx.fillStyle = 'rgba(255,255,255,.55)';
+    cx.beginPath(); cx.ellipse(-r * .42, -r * .42, r * .2, r * .13, -.6, 0, Math.PI * 2); cx.fill();
+    cx.restore();
+  }
+  function drawBase() {
+    const lw = W / 4, hitY = H - 62, flash = st ? st.flash : [0, 0, 0, 0];
+    const bg = cx.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#12061c'); bg.addColorStop(1, '#2a1240');
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+    for (let i = 0; i < 4; i++) {
+      cx.fillStyle = i % 2 ? 'rgba(255,255,255,.02)' : 'rgba(255,255,255,.045)'; cx.fillRect(i * lw, 0, lw, H);
+      if (flash[i] > 0) {
+        const g = cx.createLinearGradient(0, hitY + 20, 0, 0);
+        g.addColorStop(0, rgba(COLORS[i], .4 * flash[i])); g.addColorStop(1, rgba(COLORS[i], 0));
+        cx.fillStyle = g; cx.fillRect(i * lw, 0, lw, hitY + 20);
+      }
+    }
+    const hl = cx.createLinearGradient(0, 0, W, 0); COLORS.forEach((c, i) => hl.addColorStop(i / 3, c));
+    cx.globalAlpha = .75; cx.fillStyle = hl; cx.fillRect(0, hitY - 1.5, W, 3); cx.globalAlpha = 1;
+    cx.textAlign = 'center'; cx.textBaseline = 'middle';
+    for (let i = 0; i < 4; i++) {
+      const x = i * lw + lw / 2;
+      cx.beginPath(); cx.arc(x, hitY, Math.min(24, lw * .32), 0, Math.PI * 2);
+      cx.fillStyle = rgba(COLORS[i], .12 + .55 * flash[i]); cx.fill();
+      cx.lineWidth = 3; cx.strokeStyle = COLORS[i]; cx.stroke();
+      cx.fillStyle = 'rgba(255,245,234,.5)'; cx.font = '600 12px Fredoka, sans-serif';
+      cx.fillText(fine ? KEYS4[i].toUpperCase() : 'tap', x, H - 20);
+    }
+  }
+  function draw(t) {
+    const lw = W / 4, hitY = H - 62, speed = (hitY + 30) / LEAD, r = Math.min(17, lw * .22);
+    drawBase();
+    for (const nt of notes) {
+      if (nt.hit) continue;
+      const y = hitY - (nt.t - t) * speed;
+      if (y < -30) break;
+      if (y > H + 30) continue;
+      heart(nt.lane * lw + lw / 2, y, r, COLORS[nt.lane], nt.miss ? .25 : 1);
+    }
+    st.parts = st.parts.filter(p => (p.life -= 1 / 60) > 0);
+    st.parts.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += .15;
+      cx.globalAlpha = Math.max(0, p.life / .7); cx.fillStyle = p.c;
+      cx.beginPath(); cx.arc(p.x, p.y, p.s, 0, Math.PI * 2); cx.fill();
+    });
+    cx.globalAlpha = 1;
+    st.labels = st.labels.filter(l => t - l.t < .6);
+    cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.font = '700 15px Fredoka, sans-serif';
+    st.labels.forEach(l => {
+      const a = (t - l.t) / .6; cx.globalAlpha = 1 - a; cx.fillStyle = l.c;
+      cx.fillText(l.txt, l.lane * lw + lw / 2, hitY - 42 - a * 30);
+    });
+    cx.globalAlpha = 1;
+    cx.fillStyle = 'rgba(255,255,255,.12)'; cx.fillRect(0, 0, W, 4);
+    cx.fillStyle = '#ff5fa2'; cx.fillRect(0, 0, W * Math.min(1, Math.max(0, t) / st.end), 4);
+    cx.font = '600 14px Fredoka, sans-serif'; cx.textAlign = 'left'; cx.fillStyle = '#fff5ea';
+    cx.fillText(`★ ${st.score}`, 12, 22);
+    if (st.combo >= 3) { cx.textAlign = 'right'; cx.fillStyle = '#ffd36e'; cx.fillText(`${st.combo}× combo`, W - 12, 22); }
+    const beat = t / SPB;
+    if (beat >= 0 && beat < COUNT_IN) {
+      const k = Math.floor(beat), p = beat - k;
+      cx.textAlign = 'center'; cx.globalAlpha = 1 - p * .7; cx.fillStyle = '#fff5ea';
+      cx.font = `400 ${Math.round(54 + p * 18)}px Pacifico, cursive`;
+      cx.fillText(k < COUNT_IN - 1 ? String(COUNT_IN - 1 - k) : 'Go!', W / 2, H * .38);
+      cx.globalAlpha = 1;
+    }
+    for (let i = 0; i < 4; i++) st.flash[i] = Math.max(0, st.flash[i] - .07);
+  }
+  function idle() { size(); drawBase(); }
+  function intro() {
+    panel.innerHTML = `<div class="game-title">Heartbeat Hero 💖</div>
+      <p>Tap a lane when its heart reaches the line.<br>Your taps play the melody 🎶</p>
+      <button class="btn-primary" id="rgStart" type="button">▶ Start</button>
+      <p class="tiny">score 60% or more to win the gold record${fine ? ' · keys D F J K' : ''}</p>`;
+    $('#rgStart', panel).addEventListener('click', start);
+    ov.hidden = false;
+  }
+  function start() {
+    Sound.init(); pause();
+    size();
+    const endBeat = build(), lead = .3;
+    st = { running: true, t0: performance.now() + lead * 1000, score: 0, combo: 0, maxCombo: 0,
+      c: { perfect: 0, great: 0, ok: 0, miss: 0 }, labels: [], parts: [], flash: [0, 0, 0, 0],
+      end: endBeat * SPB + 1.3, bus: null, raf: 0 };
+    if (Sound.ready()) {
+      const a0 = Sound.now() + lead; st.bus = Sound.bus();
+      for (let k = 0; k < COUNT_IN; k++) Sound.tone(k === COUNT_IN - 1 ? 'C6' : 'G5', a0 + k * SPB, .15, { type: 'sine', vol: .12, bright: false, dest: st.bus });
+      backing(CH, BPM, a0 + COUNT_IN * SPB, st.bus);
+    }
+    ov.hidden = true;
+    st.raf = requestAnimationFrame(loop);
+  }
+  function loop() {
+    if (!st || !st.running) return;
+    const t = (performance.now() - st.t0) / 1000;
+    for (const nt of notes) {
+      if (nt.t > t) break;
+      if (!nt.hit && !nt.miss && t - nt.t > WIN.ok) {
+        nt.miss = true; st.c.miss++; st.combo = 0;
+        st.labels.push({ lane: nt.lane, txt: 'miss', c: 'rgba(255,245,234,.55)', t });
+      }
+    }
+    draw(t);
+    if (t >= st.end) { finish(); return; }
+    st.raf = requestAnimationFrame(loop);
+  }
+  function tap(lane) {
+    const t = (performance.now() - st.t0) / 1000;
+    st.flash[lane] = 1;
+    let best = null, bd = 9;
+    for (const nt of notes) {
+      if (nt.t - t > WIN.ok) break;
+      if (nt.lane !== lane || nt.hit || nt.miss) continue;
+      const d = Math.abs(nt.t - t); if (d < bd) { bd = d; best = nt; }
+    }
+    if (best && bd <= WIN.ok) {
+      best.hit = true;
+      const g = bd <= WIN.perfect ? 'perfect' : bd <= WIN.great ? 'great' : 'ok';
+      st.c[g]++; st.combo++; st.maxCombo = Math.max(st.maxCombo, st.combo);
+      st.score += PTS[g] + Math.min(50, st.combo * 2);
+      Sound.tone(best.n, null, Math.min(1.4, Math.max(.35, best.len * SPB * 1.5)), { vol: .24 });
+      st.labels.push({ lane, txt: LABEL[g][0], c: LABEL[g][1], t });
+      const lw = W / 4, x = lane * lw + lw / 2, y = H - 62;
+      for (let k = 0; k < 12; k++) {
+        const a = rand(0, Math.PI * 2), s = rand(1.5, 4.5);
+        st.parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 2, life: .7, c: pick([COLORS[lane], '#fff5ea', '#ffd36e']), s: rand(1.5, 3.5) });
+      }
+    } else {
+      Sound.tone('C3', null, .15, { type: 'sine', vol: .07, bright: false });
+    }
+  }
+  function finish() {
+    st.running = false; Sound.release(st.bus);
+    const c = st.c, acc = (c.perfect + c.great * .75 + c.ok * .45) / notes.length, pct = Math.round(acc * 100);
+    const [g, line] = acc >= .9 ? ['S', 'SUPERSTAR 🌟 was that even hard for you?']
+      : acc >= .75 ? ['A', 'Amazing! Born for the stage 🎤']
+      : acc >= .6 ? ['B', 'So good! That rhythm is gold 🏆']
+      : acc >= .4 ? ['C', "Nice! A little more and it's gold 💪"]
+      : ['D', 'Still my favorite singer 😌 one more try?'];
+    panel.innerHTML = `<div class="tiny">final grade</div><div class="rg-grade g-${g}">${g}</div><p class="rg-msg">${line}</p>
+      <div class="rg-stats"><span>accuracy</span><b>${pct}%</b><span>score</span><b>${st.score}</b><span>best combo</span><b>${st.maxCombo}</b><span>perfect · great · ok</span><b>${c.perfect} · ${c.great} · ${c.ok}</b></div>
+      <button class="btn-primary" id="rgStart" type="button">↻ Play again</button>`;
+    $('#rgStart', panel).addEventListener('click', start);
+    ov.hidden = false;
+    if (acc >= .75) Sound.cheer(30, false);
+    if (acc >= .6) setTimeout(() => award('rhythm'), 500);
+  }
+  function stop() {
+    if (!st || !st.running) return;
+    st.running = false; cancelAnimationFrame(st.raf); Sound.release(st.bus);
+    intro(); idle();
+  }
+  cv.addEventListener('pointerdown', e => {
+    if (!st || !st.running) return;
+    e.preventDefault();
+    const r = cv.getBoundingClientRect();
+    tap(Math.max(0, Math.min(3, Math.floor((e.clientX - r.left) / r.width * 4))));
+  });
+  document.addEventListener('keydown', e => {
+    if (!st || !st.running || e.repeat) return;
+    const k = KEYS4.indexOf(e.key.toLowerCase());
+    if (k >= 0) { e.preventDefault(); tap(k); }
+  });
+  window.addEventListener('resize', () => { if (st && st.running) size(); else if (!$('#g-rhythm').hidden) idle(); });
+  intro(); idle();
+  return { idle, stop, running: () => !!(st && st.running) };
+})();
+
+/* ---------- Game 2: Echo Me (memory) ---------- */
+const EC = (() => {
+  const NOTES = ['C5', 'D5', 'E5', 'G5'];
+  const board = $('#echoBoard'), pads = $$('.echo-pad', board), status = $('#echoStatus');
+  const roundEl = $('#echoRound'), bestEl = $('#echoBest'), startB = $('#echoStart');
+  const INTRO = status.textContent;
+  const MILESTONES = { 3: 'Round 3 ✓ warming up 🎶', 5: 'Round 5 ✓ those ears!! 👂✨', 7: 'Round 7 ✓ GOLD RECORD! 🏆', 10: 'Round 10 ✓ are you even human?! 🤯', 15: 'Round 15 ✓ certified musical genius 🎓' };
+  let seq = [], idx = 0, round = 0, state = 'idle', timers = [];
+  let best = parseInt(store.get('pp-echo-best') || '0', 10) || 0;
+  bestEl.textContent = best;
+  function light(i, ms) {
+    const p = pads[i]; p.classList.add('lit');
+    Sound.init(); Sound.tone(NOTES[i], null, Math.max(.35, ms / 1000 * 1.6), { vol: .24 });
+    timers.push(setTimeout(() => p.classList.remove('lit'), ms));
+  }
+  function clear() { timers.forEach(clearTimeout); timers = []; pads.forEach(p => p.classList.remove('lit')); }
+  function start() { Sound.init(); pause(); clear(); seq = []; round = 0; startB.hidden = true; next(); }
+  function next() {
+    round++; roundEl.textContent = round; seq.push(Math.floor(Math.random() * 4));
+    state = 'listen'; status.textContent = `Round ${round}: listen… 👂`;
+    const gap = Math.max(300, 620 - round * 28);
+    seq.forEach((p, k) => timers.push(setTimeout(() => light(p, gap * .7), 600 + k * gap)));
+    timers.push(setTimeout(() => { state = 'input'; idx = 0; status.textContent = 'Your turn! Sing it back 🎤'; }, 600 + seq.length * gap));
+  }
+  function press(i) {
+    if (state === 'listen') return;
+    light(i, 220);
+    if (state !== 'input') return;
+    if (i === seq[idx]) {
+      idx++;
+      if (idx < seq.length) return;
+      state = 'listen';
+      if (round > best) { best = round; bestEl.textContent = best; store.set('pp-echo-best', String(best)); }
+      status.textContent = MILESTONES[round] || `Round ${round} ✓ ${pick(['nice! ✨', 'so good 💖', 'easy for you 😌', 'perfect 🎶'])}`;
+      if (round === 7) award('echo');
+      timers.push(setTimeout(next, 1000));
+    } else {
+      state = 'idle'; Sound.buzz();
+      board.classList.remove('wrong'); void board.offsetWidth; board.classList.add('wrong');
+      const done = round - 1;
+      status.textContent = `Oops, wrong note 😅 You cleared ${done} round${done === 1 ? '' : 's'}. ${done >= 7 ? 'Still a legend 🏆' : 'Gold is at 7, try again?'}`;
+      startB.textContent = '↻ Try again'; startB.hidden = false;
+    }
+  }
+  pads.forEach((p, i) => {
+    p.addEventListener('pointerdown', e => { e.preventDefault(); press(i); });
+    p.addEventListener('click', e => { if (e.detail === 0) press(i); }); // keyboard
+  });
+  startB.addEventListener('click', start);
+  function stop() {
+    if (state === 'idle' && !timers.length) return;
+    clear(); state = 'idle'; round = 0; roundEl.textContent = 0;
+    startB.textContent = '▶ Start'; startB.hidden = false; status.textContent = INTRO;
+  }
+  return { stop };
+})();
+
+/* ---------- Game 3: Hold That Note (pitch) ---------- */
+const PG = (() => {
+  const SARGAM = ['Sa', 're', 'Re', 'ga', 'Ga', 'Ma', 'Ma♯', 'Pa', 'dha', 'Dha', 'ni', 'Ni'];
+  const NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
+  const NATURAL = [0, 2, 4, 5, 7, 9, 11];
+  const HOLD_NEED = 1.6, TOL_MIC = 35, TOL_EAR = 15;
+  const introEl = $('#pgIntro'), playUi = $('#pgPlay'), micUi = $('#pgMicUi'), earUi = $('#pgEarUi');
+  const introMsg = $('#pgIntroMsg'), msg = $('#pgMsg'), roundEl = $('#pgRound'), sarEl = $('#pgSargam'), noteEl = $('#pgNote');
+  const tuner = $('#pgTuner'), needle = $('#pgNeedle'), det = $('#pgDetected'), holdFill = $('#pgHoldFill');
+  const slider = $('#pgSlider'), lockBtn = $('#pgLock'), backBtn = $('#pgBack');
+  const INTRO_MSG = introMsg.textContent;
+  let mode = null, targets = [], ti = 0, hold = 0, stream = null, src = null, an = null, buf = null;
+  let raf = 0, lastT = 0, hist = [], offset = 0, coolUntil = 0, her = null, lastBlip = 0, nextT = 0;
+  const refFreq = pc => 440 * Math.pow(2, (60 + pc - 69) / 12); // 4th octave, comfy for a female voice
+  function pickTargets() { const pool = NATURAL.slice(), out = []; while (out.length < 3) out.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]); return out; }
+  function playRef() { if (ti >= 3) return; Sound.init(); Sound.tone(refFreq(targets[ti]), null, 1.3, { vol: .26 }); coolUntil = performance.now() + 1500; }
+  function showTarget() {
+    const pc = targets[ti];
+    sarEl.textContent = SARGAM[pc]; noteEl.textContent = NAMES[pc];
+    roundEl.textContent = `Note ${ti + 1} of 3`; hold = 0; hist = []; holdFill.style.width = '0%'; msg.textContent = '';
+    if (mode === 'ear') { offset = (Math.random() < .5 ? -1 : 1) * Math.round(rand(45, 120)); slider.value = 0; lockBtn.disabled = false; }
+    nextT = setTimeout(playRef, 350);
+  }
+  function begin(m) {
+    mode = m; targets = pickTargets(); ti = 0;
+    introEl.hidden = true; playUi.hidden = false; micUi.hidden = m !== 'mic'; earUi.hidden = m !== 'ear';
+    backBtn.textContent = '← change mode';
+    showTarget();
+    if (m === 'mic') { lastT = 0; raf = requestAnimationFrame(micLoop); }
+  }
+  async function startMic() {
+    Sound.init(); pause();
+    const { ctx } = Sound.raw();
+    if (!ctx || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      introMsg.textContent = "This browser can't use the mic here. Try “tune it by ear” 🎚️"; return;
+    }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+    } catch (e) {
+      introMsg.textContent = "Couldn't open the mic (maybe permission was blocked). Try “tune it by ear” 🎚️"; return;
+    }
+    if (ctx.state === 'suspended') { try { await ctx.resume(); } catch (e) {} }
+    src = ctx.createMediaStreamSource(stream); an = ctx.createAnalyser(); an.fftSize = 2048; src.connect(an);
+    buf = new Float32Array(an.fftSize);
+    begin('mic');
+  }
+  function paintHold() { holdFill.style.width = Math.min(100, hold / HOLD_NEED * 100) + '%'; }
+  function micLoop(t) {
+    raf = requestAnimationFrame(micLoop);
+    if (t - lastT < 50) return;
+    const dt = lastT ? Math.min(.2, (t - lastT) / 1000) : 0; lastT = t;
+    if (performance.now() < coolUntil) { det.textContent = 'listen… 👂'; tuner.classList.remove('live', 'in'); return; }
+    an.getFloatTimeDomainData(buf);
+    const r = detectPitch(buf, Sound.raw().ctx.sampleRate);
+    if (r.f < 0) {
+      hist = []; hold = Math.max(0, hold - dt * .6); paintHold();
+      det.textContent = r.rms < .01 ? 'waiting for your voice… 🎤' : 'hold one steady note…';
+      tuner.classList.remove('live', 'in'); return;
+    }
+    hist.push(r.f); if (hist.length > 5) hist.shift();
+    const f = median(hist), midi = 69 + 12 * Math.log2(f / 440), near = Math.round(midi), pc = ((near % 12) + 12) % 12;
+    let dm = midi - targets[ti]; dm = ((dm % 12) + 18) % 12 - 6; // distance to the nearest octave of the target
+    const cents = Math.round(dm * 100), inTune = Math.abs(cents) <= TOL_MIC;
+    det.textContent = `you: ${NAMES[pc]}${Math.floor(near / 12) - 1} · ${SARGAM[pc]} · ${inTune ? 'in tune! hold it ✨' : cents < 0 ? 'a little higher ↑' : 'a little lower ↓'}`;
+    needle.style.left = (50 + Math.max(-50, Math.min(50, cents)) * .9) + '%';
+    tuner.classList.add('live'); tuner.classList.toggle('in', inTune);
+    hold = inTune ? hold + dt : Math.max(0, hold - dt * .6);
+    paintHold();
+    if (hold >= HOLD_NEED) success();
+  }
+  function success() {
+    hold = 0; coolUntil = performance.now() + 1600; lockBtn.disabled = true;
+    Sound.sparkle(); const [x, y] = centerOf(sarEl); burst(x, y, 18, 'confetti');
+    msg.textContent = pick(['Nailed it! 🎯', 'Pitch perfect 💖', 'Wow, those ears 👂✨', 'Exactly right 😍']);
+    ti++;
+    if (ti >= 3) { finishPG(); return; }
+    nextT = setTimeout(() => { if (mode) showTarget(); }, 1300);
+  }
+  function finishPG() {
+    msg.textContent = 'All 3 notes! That voice is pure gold 🏆';
+    roundEl.textContent = 'Done!';
+    if (mode === 'mic') { stopMic(); tuner.classList.remove('live', 'in'); det.textContent = 'mic off ✓'; }
+    backBtn.textContent = '↻ play again';
+    setTimeout(() => award('pitch'), 600);
+  }
+  function herFreq() { return refFreq(targets[ti]) * Math.pow(2, (offset + +slider.value) / 1200); }
+  function herStart() {
+    const { ctx, master } = Sound.raw(); if (!ctx || her || ti >= 3) return;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'triangle'; o.frequency.value = herFreq();
+    g.gain.setValueAtTime(.0001, ctx.currentTime); g.gain.exponentialRampToValueAtTime(.2, ctx.currentTime + .05);
+    o.connect(g); g.connect(master); o.start(); her = { o, g };
+  }
+  function herStop() {
+    if (!her) return;
+    const { ctx } = Sound.raw(), { o, g } = her; her = null;
+    try { g.gain.setTargetAtTime(.0001, ctx.currentTime, .05); o.stop(ctx.currentTime + .3); } catch (e) {}
+  }
+  slider.addEventListener('pointerdown', () => { Sound.init(); herStart(); });
+  slider.addEventListener('input', () => {
+    if (ti >= 3) return;
+    if (her) her.o.frequency.setTargetAtTime(herFreq(), Sound.now(), .02);
+    else if (performance.now() - lastBlip > 120) { lastBlip = performance.now(); Sound.tone(herFreq(), null, .5, { vol: .2 }); }
+  });
+  ['pointerup', 'pointercancel', 'change', 'blur'].forEach(ev => slider.addEventListener(ev, herStop));
+  lockBtn.addEventListener('click', () => {
+    if (mode !== 'ear' || ti >= 3) return;
+    const c = offset + +slider.value;
+    if (Math.abs(c) <= TOL_EAR) { success(); return; }
+    Sound.buzz();
+    msg.textContent = `${Math.abs(c)}¢ ${c > 0 ? 'too high, slide left ←' : 'too low, slide right →'}`;
+  });
+  function stopMic() {
+    cancelAnimationFrame(raf); raf = 0;
+    if (stream) stream.getTracks().forEach(tr => tr.stop());
+    try { if (src) src.disconnect(); } catch (e) {}
+    stream = null; src = null; an = null;
+  }
+  function stop() {
+    if (!mode) return;
+    clearTimeout(nextT); stopMic(); herStop(); mode = null;
+    playUi.hidden = true; introEl.hidden = false; introMsg.textContent = INTRO_MSG;
+  }
+  $('#pgMic').addEventListener('click', startMic);
+  $('#pgEar').addEventListener('click', () => { Sound.init(); pause(); begin('ear'); });
+  $('#pgRef').addEventListener('click', playRef);
+  backBtn.addEventListener('click', stop);
+  return { stop };
+})();
+
+function stopGames() { RG.stop(); EC.stop(); PG.stop(); }
+const tabs = $$('.game-tab');
+tabs.forEach(tb => tb.addEventListener('click', () => {
+  const id = tb.dataset.game;
+  stopGames();
+  tabs.forEach(x => { const on = x === tb; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+  ['rhythm', 'echo', 'pitch'].forEach(k => { $('#g-' + k).hidden = k !== id; });
+  if (id === 'rhythm') RG.idle();
+}));
+
+/* =================================================================
+   Award ceremony
+   ================================================================= */
+const awardGrid = $('#awardGrid'), awardHint = $('#awardHint'), nAwards = CONFIG.awards.length;
+let awardsOpened = 0, rolling = false;
+awardHint.textContent = `0 of ${nAwards} envelopes opened`;
+CONFIG.awards.forEach(a => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'award';
+  b.innerHTML = '<span class="aw-inner"><span class="aw-face aw-front"><span class="aw-flap"></span><span class="aw-seal">♥</span><span class="aw-label">category</span><span class="aw-cat"></span><span class="aw-tap">tap to open</span></span>'
+    + '<span class="aw-face aw-back"><span class="aw-cat2"></span><span class="aw-trophy">🏆</span><span class="aw-name"></span><span class="aw-note"></span></span></span>';
+  $('.aw-cat', b).textContent = a.category;
+  $('.aw-cat2', b).textContent = a.category;
+  $('.aw-name', b).textContent = stage;
+  $('.aw-note', b).textContent = a.note;
+  b.setAttribute('aria-label', `Open the envelope: ${a.category}`);
+  b.addEventListener('click', () => {
+    if (b.classList.contains('open') || rolling) return;
+    rolling = true; Sound.init(); Sound.drumroll(1.6);
+    b.classList.add('rolling');
+    setTimeout(() => {
+      b.classList.remove('rolling'); b.classList.add('open'); rolling = false;
+      b.setAttribute('aria-label', `${a.category}: the winner is ${stage}`);
+      Sound.crash(); Sound.cheer(28, false);
+      const [x, y] = centerOf(b); burst(x, y, 24, 'confetti');
+      awardsOpened++;
+      awardHint.textContent = awardsOpened < nAwards ? `${awardsOpened} of ${nAwards} envelopes opened` : `Clean sweep! ${nAwards} awards, one winner 🏆`;
+      if (awardsOpened === nAwards) setTimeout(() => { rain(24, ['🏆', '🌹', '✨', '💖']); toast(`Clean sweep! Every award goes to ${stage} 🏆`, 4000); }, 1000);
+    }, 1600);
+  });
+  awardGrid.appendChild(b);
+});
+
+/* =================================================================
+   Secret track (unlocked by 3 gold records)
+   ================================================================= */
+const secretOv = $('#secretOv'), soLyrics = $('#soLyrics');
+const SECRET_MUSIC = { bpm: 80, chords: ['C', 'Am', 'F', 'G'], melody: OUR_SONG };
+let soBus = null, soTimers = [];
+$('#soTitle').textContent = `${stage} (Secret Track)`;
+function playSecret() {
+  soTimers.forEach(clearTimeout); soTimers = []; Sound.release(soBus);
+  Sound.init(); soBus = scheduleMusic(SECRET_MUSIC, 0, 2);
+  const total = 2 * 16 * 60 / SECRET_MUSIC.bpm, lines = CONFIG.secretTrack;
+  soLyrics.innerHTML = '';
+  const els = lines.map(l => { const p = document.createElement('p'); p.className = 'so-line'; p.textContent = l; soLyrics.appendChild(p); return p; });
+  const sig = document.createElement('p'); sig.className = 'so-line sig'; sig.textContent = '— ' + CONFIG.fromName; soLyrics.appendChild(sig);
+  const step = (total - 2) / Math.max(1, lines.length);
+  els.forEach((p, k) => soTimers.push(setTimeout(() => p.classList.add('on'), 600 + k * step * 1000)));
+  soTimers.push(setTimeout(() => { sig.classList.add('on'); rain(26, ['💖', '✨', '🌹', '💿']); }, total * 1000));
+}
+function openSecret() {
+  if (gold.size < 3) { toast(`🔒 Win all 3 gold records first (${gold.size}/3). The games are right below!`); return; }
+  pause(); stopGames(); secretBtn.classList.remove('pulse');
+  secretOv.hidden = false; document.body.classList.add('noscroll');
+  playSecret(); $('#soClose').focus({ preventScroll: true });
+}
+function closeSecret() {
+  soTimers.forEach(clearTimeout); soTimers = []; Sound.release(soBus); soBus = null;
+  secretOv.hidden = true; document.body.classList.remove('noscroll');
+}
+secretBtn.addEventListener('click', openSecret);
+$('#soReplay').addEventListener('click', playSecret);
+$('#soClose').addEventListener('click', closeSecret);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !secretOv.hidden) closeSecret(); });
+
+/* ---------- reveal on scroll ---------- */
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (!en.isIntersecting) return;
+  en.target.classList.add('in'); io.unobserve(en.target);
+  en.target.dispatchEvent(new Event('revealed'));
+}), { threshold: .15 });
+$$('.reveal').forEach(el => io.observe(el));
+
+/* ---------- tap anywhere for notes ---------- */
+document.addEventListener('pointerdown', e => {
+  if (!started || e.target.closest('button, a, input, .piano, .progress-hit, .game, .secret-ov')) return;
+  burst(e.clientX, e.clientY, 4);
+});
+})();
+</script>
+</body>
+</html>
